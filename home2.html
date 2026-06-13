@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Echo Karaoke Lounge Neon Edition – immersive neon nights, sing loud • party private, and the ultimate karaoke experience.">
-    <title>Echo Karaoke | Neon Nights – Home</title>
+    <meta name="description" content="Echo Karaoke Lounge Neon Edition – immersive sing loud • party private, sing loud • party private, and the ultimate karaoke experience.">
+    <title>Echo Karaoke | sing loud • party private – Home</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A855F7'%3E%3Cpath d='M12 3v1m0 16v1M9 6l-1 1m8 8l1-1M6 9H5m14 0h-1m-8 8l1 1m6-8l1-1M6 15H5m14 0h-1M4 4l2 2m12-2l-2 2m2 12l-2-2M6 18l2-2' stroke='%23A855F7' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23A855F7'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:opsz,wght@14..32,300..900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -26,6 +26,7 @@
             --text-muted: #B0B0B0;
             --border-dim: rgba(255, 255, 255, 0.1);
             --card-bg: #111111;
+            --navbar-bg: #0A0A0A;
             --heading-font: 'Montserrat', sans-serif;
         }
 
@@ -40,6 +41,7 @@
             --text-muted: #6C757D;
             --border-dim: rgba(0, 0, 0, 0.1);
             --card-bg: #F5F5F5;
+            --navbar-bg: #FFFFFF;
         }
 
         body {
@@ -190,6 +192,13 @@
             opacity: 1; 
             visibility: visible; 
             transform: translateY(0); 
+        }
+        .dropdown-item { 
+            display: block; 
+            padding: 10px 20px; 
+            color: var(--text-main); 
+            text-decoration: none; 
+            transition: 0.2s;
         }
         .mobile-dropdown-content a {
             display: block;
@@ -649,7 +658,7 @@
     <div class="container navbar-flex">
         <a href="index.html" class="logo">
             <div class="logo-icon"><i class="fas fa-microphone-alt"></i></div>
-            <div class="logo-text-wrapper"><div class="logo-text">ECHO<span> Karaoke</span></div><span class="logo-tagline">neon nights</span></div>
+            <div class="logo-text-wrapper"><div class="logo-text">ECHO<span> Karaoke</span></div><span class="logo-tagline">sing loud • party private</span></div>
         </a>
         <div class="desktop-nav">
             <div class="dropdown"><div class="nav-link">Home <i class="fas fa-chevron-down"></i></div><div class="dropdown-menu"><a href="index.html" class="dropdown-item">HOME 1</a><a href="home2.html" class="dropdown-item active">HOME 2</a></div></div>
@@ -699,7 +708,7 @@
 <section class="section"><div class="container"><div class="vip-section"><div class="section-badge" style="background: rgba(168,85,247,0.3);"><i class="fas fa-crown"></i> VIP Access</div><h2 style="font-size: 2rem; margin-top: 0.5rem;">Join the Neon Circle</h2><p style="color: var(--text-muted);">Exclusive perks for our most loyal singers.</p><div class="vip-benefits"><div class="vip-benefit"><i class="fas fa-gift"></i><h4>Birthday Free Hour</h4></div><div class="vip-benefit"><i class="fas fa-percent"></i><h4>20% Off Drinks</h4></div><div class="vip-benefit"><i class="fas fa-calendar-star"></i><h4>Priority Booking</h4></div></div><a href="#" class="btn-primary">Upgrade to VIP →</a></div></div></section>
 
 <!-- Section 4: Upcoming Neon Events -->
-<section class="section section-alt"><div class="container"><div class="section-header"><span class="section-badge"><i class="fas fa-calendar-alt"></i> Mark Your Calendar</span><h2 class="section-title">Neon Nights Events</h2></div><div class="events-timeline"><div class="event-item"><span class="event-date"><i class="fas fa-calendar-day"></i> June 20</span><span class="event-name">🎤 Neon Open Mic Battle</span><a href="#" class="event-btn">Join →</a></div><div class="event-item"><span class="event-date"><i class="fas fa-calendar-day"></i> June 27</span><span class="event-name">💜 Purple Rain Tribute Night</span><a href="#" class="event-btn">Join →</a></div><div class="event-item"><span class="event-date"><i class="fas fa-calendar-day"></i> July 4</span><span class="event-name">🇺🇸 Independence Day Glow Party</span><a href="#" class="event-btn">Join →</a></div></div></div></section>
+<section class="section section-alt"><div class="container"><div class="section-header"><span class="section-badge"><i class="fas fa-calendar-alt"></i> Mark Your Calendar</span><h2 class="section-title">sing loud • party private Events</h2></div><div class="events-timeline"><div class="event-item"><span class="event-date"><i class="fas fa-calendar-day"></i> June 20</span><span class="event-name">🎤 Neon Open Mic Battle</span><a href="#" class="event-btn">Join →</a></div><div class="event-item"><span class="event-date"><i class="fas fa-calendar-day"></i> June 27</span><span class="event-name">💜 Purple Rain Tribute Night</span><a href="#" class="event-btn">Join →</a></div><div class="event-item"><span class="event-date"><i class="fas fa-calendar-day"></i> July 4</span><span class="event-name">🇺🇸 Independence Day Glow Party</span><a href="#" class="event-btn">Join →</a></div></div></div></section>
 
 <!-- Section 5: Music Request Form -->
 <section class="section"><div class="container"><div class="section-header"><span class="section-badge"><i class="fas fa-music"></i> Request a Song</span><h2 class="section-title">What Do You Want to Sing?</h2></div><div class="request-form-container"><form class="request-form" id="songRequest"><input type="text" placeholder="Your name" required><input type="email" placeholder="Email" required><input type="text" placeholder="Song title & artist" required><select><option>Pop</option><option>Rock</option><option>K-Pop</option><option>R&B</option><option>Latin</option></select><button type="submit"><i class="fas fa-paper-plane"></i> Submit Request</button><p id="requestMsg" style="margin-top: 1rem; text-align: center; display: none; color: var(--neon-purple);"></p></form></div></div></section>
@@ -707,7 +716,7 @@
 <!-- Section 6: Neon Gallery Teaser -->
 <section class="section section-alt"><div class="container"><div class="section-header"><span class="section-badge"><i class="fas fa-images"></i> Visual Vibe</span><h2 class="section-title">Neon Moments</h2></div><div class="gallery-teaser"><img class="teaser-img" src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400" alt="Party"><img class="teaser-img" src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400" alt="Crowd"><img class="teaser-img" src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400" alt="Stage"><img class="teaser-img" src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400" alt="Singing"></div><div style="text-align: center; margin-top: 2rem;"><a href="gallery.html" class="btn-outline-neon">View Full Gallery →</a></div></div></section>
 
-<footer class="footer"><div class="container"><div class="footer-main"><div class="footer-brand"><a href="#" class="logo" style="display:flex; gap:10px;"><div class="logo-icon"><i class="fas fa-microphone-alt"></i></div><div class="logo-text-wrapper"><div class="logo-text">ECHO<span> Karaoke</span></div><span class="logo-tagline">neon nights</span></div></a><p class="footer-tagline">Open 7 days • 6pm–2am. The ultimate neon karaoke lounge.</p><div class="footer-social"><a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a><a href="#" class="footer-social-link"><i class="fab fa-tiktok"></i></a><a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a></div></div><div><h3 class="footer-heading">Explore</h3><ul class="footer-links"><li><a href="#">Neon Rooms</a></li><li><a href="#">Events</a></li><li><a href="#">VIP Club</a></li></ul></div><div><h3 class="footer-heading">Support</h3><ul class="footer-links"><li><a href="#">FAQ</a></li><li><a href="#">Contact</a></li><li><a href="#">Careers</a></li></ul></div><div><h3 class="footer-heading">Newsletter</h3><input type="email" placeholder="Your email" class="footer-input" style="padding:0.875rem; width:100%; background:var(--bg-secondary); border-radius:9999px;"><button class="footer-btn" style="width:100%; margin-top:0.5rem;">Subscribe</button></div></div><div class="footer-bottom"><div class="copyright">© 2026 Echo Karaoke Lounge – Neon Edition.</div><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div></div></footer>
+<footer class="footer"><div class="container"><div class="footer-main"><div class="footer-brand"><a href="#" class="logo" style="display:flex; gap:10px;"><div class="logo-icon"><i class="fas fa-microphone-alt"></i></div><div class="logo-text-wrapper"><div class="logo-text">ECHO<span> Karaoke</span></div><span class="logo-tagline">sing loud • party private</span></div></a><p class="footer-tagline">Open 7 days • 6pm–2am. The ultimate neon karaoke lounge.</p><div class="footer-social"><a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a><a href="#" class="footer-social-link"><i class="fab fa-tiktok"></i></a><a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a></div></div><div><h3 class="footer-heading">Explore</h3><ul class="footer-links"><li><a href="#">Neon Rooms</a></li><li><a href="#">Events</a></li><li><a href="#">VIP Club</a></li></ul></div><div><h3 class="footer-heading">Support</h3><ul class="footer-links"><li><a href="#">FAQ</a></li><li><a href="#">Contact</a></li><li><a href="#">Careers</a></li></ul></div><div><h3 class="footer-heading">Newsletter</h3><input type="email" placeholder="Your email" class="footer-input" style="padding:0.875rem; width:100%; background:var(--bg-secondary); border-radius:9999px;"><button class="footer-btn" style="width:100%; margin-top:0.5rem;">Subscribe</button></div></div><div class="footer-bottom"><div class="copyright">© 2026 Echo Karaoke Lounge – Neon Edition.</div><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div></div></footer>
 <button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
 
 <script>

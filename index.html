@@ -504,6 +504,12 @@
         .hero-description { font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; color: rgba(255,255,255,0.95); max-width: 90%; }
         [data-theme="light"] .hero-description { color: #333; }
         .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+        @media (max-width: 991px) {
+            .hero-content-left { text-align: center; }
+            .hero-actions { justify-content: center; }
+            .hero-sub { margin-left: auto; margin-right: auto; }
+            .hero-description { margin-left: auto; margin-right: auto; }
+        }
         .btn-primary {
             background-color: var(--neon-purple); color: #0A0A0A; padding: 0.9rem 2rem;
             border-radius: 9999px; font-weight: 700; display: inline-flex;
