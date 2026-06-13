@@ -324,7 +324,6 @@
         .mobile-nav-item {
             display: flex;
             align-items: center;
-            justify-content: space-between;
             padding: 0.9rem 0;
             color: var(--text-main);
             font-size: 1.1rem;
@@ -332,6 +331,12 @@
             text-decoration: none;
             border-bottom: 1px solid var(--border-dim);
             transition: 0.2s;
+        }
+        .mobile-nav-item.active {
+            color: var(--neon-purple);
+            font-weight: 700;
+            padding-left: 0.5rem;
+            border-left: 3px solid var(--neon-purple);
         }
         .mobile-nav-item:hover {
             color: var(--neon-purple);
@@ -373,10 +378,15 @@
         }
         .mobile-dropdown-content a {
             display: block;
-            padding: 0.7rem 1.5rem;
-            color: var(--text-main);
+            padding: 0.8rem 1rem;
+            color: var(--text-dim);
             text-decoration: none;
+            border-bottom: 1px solid var(--border-dim);
             transition: 0.2s;
+        }
+        .mobile-dropdown-content a.active {
+            color: var(--neon-purple);
+            font-weight: 700;
         }
         .mobile-dropdown-content a:hover {
             color: var(--neon-purple);
@@ -400,7 +410,7 @@
             background: none;
             border: none;
             border-bottom: 1px solid var(--border-dim);
-            cursor: poPoppins;
+            cursor: pointer;
             width: 100%;
             text-align: left;
             transition: 0.2s;
@@ -588,7 +598,7 @@
         .cta-email { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
         .cta-email input { padding: 0.9rem 1.5rem; border-radius: 60px; width: 280px; max-width: 100%; background: var(--bg-secondary); color: var(--text-main); border: 1px solid var(--neon-purple); }
         .cta-email input::placeholder { color: var(--footer-text); }
-        .cta-email button { background: var(--neon-purple); color: #0A0A0A; border: none; padding: 0.9rem 2rem; border-radius: 60px; font-weight: 700; cursor: poPoppins; transition: 0.2s; }
+        .cta-email button { background: var(--neon-purple); color: #0A0A0A; border: none; padding: 0.9rem 2rem; border-radius: 60px; font-weight: 700; cursor: pointer; transition: 0.2s; }
         [data-theme="light"] .cta-email button { color: #FFFFFF; }
         .cta-email button:hover { background: #c084fc; transform: translateY(-2px); color: #0A0A0A; }
         [data-theme="light"] .cta-email button:hover { color: #FFFFFF; }
@@ -636,7 +646,7 @@
         .footer-links a:hover { color: var(--neon-purple); transform: translateX(5px); }
         .footer-input { width: 100%; padding: 0.875rem; border-radius: 9999px; background: var(--bg-secondary); border: 1px solid var(--neon-purple); color: var(--text-main); }
         .footer-input::placeholder { color: var(--footer-text); }
-        .footer-btn { width: 100%; background-color: var(--neon-purple); color: #0A0A0A; padding: 0.875rem; border-radius: 9999px; font-weight: bold; border: none; cursor: poPoppins; margin-top: 0.5rem; transition: 0.2s; }
+        .footer-btn { width: 100%; background-color: var(--neon-purple); color: #0A0A0A; padding: 0.875rem; border-radius: 9999px; font-weight: bold; border: none; cursor: pointer; margin-top: 0.5rem; transition: 0.2s; }
         [data-theme="light"] .footer-btn { color: #FFFFFF; }
         .footer-btn:hover { background-color: #c084fc; transform: translateY(-2px); color: #0A0A0A; }
         [data-theme="light"] .footer-btn:hover { color: #FFFFFF; }
@@ -649,7 +659,7 @@
         #scroll-top {
             position: fixed; bottom: 1.5rem; right: 1.5rem; width: 3rem; height: 3rem;
             background-color: var(--neon-purple); color: #0A0A0A; border-radius: 50%;
-            border: none; cursor: poPoppins; z-index: 100; display: none;
+            border: none; cursor: pointer; z-index: 100; display: none;
         }
         [data-theme="light"] #scroll-top { color: #FFFFFF; }
         #scroll-top:hover { background-color: #c084fc; transform: translateY(-3px); color: #0A0A0A; }
@@ -663,7 +673,7 @@
     padding:12px 20px;
     text-decoration:none;
     border-radius:8px;
-    cursor:poPoppins;
+    cursor:pointer;
 }
     </style>
 </head>
@@ -732,7 +742,7 @@
                 Home <i class="fas fa-chevron-down"></i>
             </button>
             <div id="home-dropdown" class="mobile-dropdown-content">
-                <a href="index.html">HOME 1</a>
+                <a href="index.html" class="active">HOME 1</a>
                 <a href="home2.html">HOME 2</a>
             </div>
         </div>
