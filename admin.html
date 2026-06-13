@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Echo Karaoke Lounge - Admin Dashboard. Manage rooms, bookings, customers, and events.">
+    <title>Echo Karaoke | Admin Dashboard</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A855F7'%3E%3Cpath d='M12 3v1m0 16v1M9 6l-1 1m8 8l1-1M6 9H5m14 0h-1m-8 8l1 1m6-8l1-1M6 15H5m14 0h-1M4 4l2 2m12-2l-2 2m2 12l-2-2M6 18l2-2' stroke='%23A855F7' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23A855F7'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:opsz,wght@14..32,300..900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Echo Karaoke Theme - Purple/Black/White */
+        :root, html[data-theme='dark'] {
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #111111;
+            --bg-card: #111111;
+            --neon-purple: #A855F7;
+            --neon-purple-dark: #7E22CE;
+            --neon-purple-light: #C084FC;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --text-muted: #6B7280;
+            --border-dim: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(255, 255, 255, 0.12);
+            --hover-bg: rgba(168, 85, 247, 0.1);
+            --sidebar-bg: #0F0F0F;
+            --header-bg: #0A0A0A;
+            --stat-card-bg: #111111;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --info: #3B82F6;
+        }
+
+        html[data-theme='light'] {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --bg-card: #FFFFFF;
+            --neon-purple: #9333EA;
+            --neon-purple-dark: #7E22CE;
+            --neon-purple-light: #A855F7;
+            --text-primary: #111111;
+            --text-secondary: #4A4A4A;
+            --text-muted: #6C757D;
+            --border-dim: rgba(0, 0, 0, 0.06);
+            --border-light: rgba(0, 0, 0, 0.1);
+            --hover-bg: rgba(147, 51, 234, 0.05);
+            --sidebar-bg: #F8F9FA;
+            --header-bg: #FFFFFF;
+            --stat-card-bg: #F8F9FA;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .sidebar-link { flex-direction: row-reverse; }
+        [dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
+        [dir="rtl"] .flex-row-reverse-rtl { flex-direction: row-reverse; }
+
+        /* Layout */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 280px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-light);
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 50;
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+        .sidebar::-webkit-scrollbar { width: 4px; }
+        .sidebar::-webkit-scrollbar-track { background: transparent; }
+        .sidebar::-webkit-scrollbar-thumb { background: var(--neon-purple); border-radius: 10px; }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .sidebar-logo-icon {
+            width: 2.8rem;
+            height: 2.8rem;
+            background: rgba(168, 85, 247, 0.15);
+            border-radius: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--neon-purple);
+            flex-shrink: 0;
+        }
+        .sidebar-logo-icon i { color: var(--neon-purple); font-size: 1.8rem; }
+        .sidebar-logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .sidebar-logo-text {
+            font-size: 1.45rem;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+        .sidebar-logo-text span { color: var(--neon-purple); }
+        .sidebar-logo-tagline {
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .admin-profile {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .admin-avatar {
+            width: 2.8rem;
+            height: 2.8rem;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-purple-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #0A0A0A;
+        }
+        .admin-info h4 { font-size: 0.9rem; font-weight: 700; }
+        .admin-info p { font-size: 0.7rem; color: var(--text-secondary); }
+
+        .sidebar-nav {
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.7rem 1rem;
+            border-radius: 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .sidebar-link i { width: 1.4rem; font-size: 1.1rem; }
+        .sidebar-link:hover, .sidebar-link.active {
+            background: var(--hover-bg);
+            color: var(--neon-purple);
+        }
+        .sidebar-link.active { background: rgba(168, 85, 247, 0.15); color: var(--neon-purple); border-left: 3px solid var(--neon-purple); }
+        .sidebar-link.logout:hover { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+        /* MAIN CONTENT */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border-light);
+            padding: 0.8rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .page-title h1 { font-size: 1.3rem; font-weight: 700; font-family: 'Montserrat', sans-serif; }
+        .page-title p { font-size: 0.75rem; color: var(--text-secondary); }
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .icon-btn {
+            width: 2.4rem;
+            height: 2.4rem;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: poPoppins;
+            transition: 0.2s;
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+        }
+        .icon-btn:hover {
+            background: var(--neon-purple);
+            color: #0A0A0A;
+            transform: scale(1.05);
+        }
+
+        .action-btn {
+            background: var(--neon-purple);
+            color: #0A0A0A;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .action-btn:hover {
+            background: #c084fc;
+            transform: translateY(-2px);
+        }
+        .action-btn.secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+        }
+        .action-btn.secondary:hover {
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
+            background: var(--hover-bg);
+        }
+
+        /* Content Container */
+        .content-container {
+            padding: 2rem;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: var(--stat-card-bg);
+            border: 1px solid var(--border-light);
+            border-radius: 1.2rem;
+            padding: 1.2rem;
+            transition: 0.2s;
+        }
+        .stat-card:hover { border-color: var(--neon-purple); transform: translateY(-3px); }
+        .stat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; }
+        .stat-header span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); }
+        .stat-header i { font-size: 1.8rem; color: var(--neon-purple); }
+        .stat-value { font-size: 2rem; font-weight: 800; font-family: 'Montserrat', sans-serif; }
+        .stat-change { font-size: 0.7rem; margin-top: 0.5rem; color: var(--success); }
+
+        /* Dashboard Cards */
+        .dashboard-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .card-header h3 { font-size: 1.1rem; font-weight: 700; }
+        .card-header a { color: var(--neon-purple); font-size: 0.8rem; text-decoration: none; }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .data-table th {
+            text-align: left;
+            padding: 0.8rem 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.75rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .data-table td {
+            padding: 0.8rem 0.5rem;
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border-dim);
+        }
+        .data-table tr:hover { background: var(--hover-bg); }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .badge-active { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+        .badge-pending { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+        .badge-completed { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+        .badge-cancelled { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+        /* Hidden Sections */
+        .admin-section { display: block; }
+        .admin-section.hidden { display: none; }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: poPoppins;
+            color: var(--text-primary);
+            font-size: 1.4rem;
+        }
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 45;
+            display: none;
+        }
+        .mobile-overlay.active { display: block; }
+
+        @media (max-width: 1024px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.mobile-open { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .mobile-menu-btn { display: block; }
+            .top-bar { padding: 0.8rem 1rem; }
+            .content-container { padding: 1rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        }
+        @media (max-width: 640px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .data-table { font-size: 0.75rem; }
+            .data-table th, .data-table td { padding: 0.5rem 0.3rem; }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <!-- Mobile Overlay -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">
+                <div class="sidebar-logo-icon"><i class="fas fa-microphone-alt"></i></div>
+                <div class="sidebar-logo-text-wrapper">
+                    <div class="sidebar-logo-text">ECHO<span> Karaoke</span></div>
+                    <div class="sidebar-logo-tagline">sing loud • party private</div>
+                </div>
+            </a>
+        </div>
+        <div class="admin-profile">
+            <div class="admin-avatar">AD</div>
+            <div class="admin-info">
+                <h4>Alex Morgan</h4>
+                <p>Super Admin · Online</p>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <p style="font-size: 0.65rem; color: var(--text-muted); padding: 0 0.5rem 0.5rem;">MAIN</p>
+            <a href="#" data-section="dashboard" class="sidebar-link active"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+            <a href="#" data-section="rooms" class="sidebar-link"><i class="fas fa-door-open"></i><span>Rooms</span></a>
+            <a href="#" data-section="bookings" class="sidebar-link"><i class="fas fa-calendar-check"></i><span>Bookings</span><span class="ml-auto" style="font-size: 0.7rem; background: var(--neon-purple); color: #0A0A0A; padding: 0.1rem 0.5rem; border-radius: 20px;">12</span></a>
+            <a href="#" data-section="customers" class="sidebar-link"><i class="fas fa-users"></i><span>Customers</span></a>
+            <a href="#" data-section="packages" class="sidebar-link"><i class="fas fa-tags"></i><span>Packages</span></a>
+            <p style="font-size: 0.65rem; color: var(--text-muted); padding: 0.8rem 0.5rem 0.5rem;">MANAGEMENT</p>
+            <a href="#" data-section="events" class="sidebar-link"><i class="fas fa-calendar-alt"></i><span>Events</span></a>
+            <a href="#" data-section="staff" class="sidebar-link"><i class="fas fa-user-tie"></i><span>Staff</span></a>
+            <a href="#" data-section="reports" class="sidebar-link"><i class="fas fa-chart-line"></i><span>Reports</span></a>
+            <p style="font-size: 0.65rem; color: var(--text-muted); padding: 0.8rem 0.5rem 0.5rem;">SYSTEM</p>
+            <a href="#" data-section="settings" class="sidebar-link"><i class="fas fa-cog"></i><span>Settings</span></a>
+            <a href="#" data-section="logout" class="sidebar-link logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+        </nav>
+        <div style="padding: 1rem; margin-top: auto; border-top: 1px solid var(--border-light); font-size: 0.7rem;">
+            <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-muted);">System Status</span><span style="color: var(--neon-purple);">● Online</span></div>
+            <div style="display: flex; justify-content: space-between; margin-top: 0.5rem;"><span style="color: var(--text-muted);">Total Revenue</span><span>$24,890</span></div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="top-bar">
+            <div class="page-title">
+                <button id="mobileMenuBtn" class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+                <h1>Admin Dashboard</h1>
+                <p>Manage your karaoke empire</p>
+            </div>
+            <div class="top-actions">
+                <button id="themeToggle" class="icon-btn"><i class="fas fa-moon"></i></button>
+                <button id="rtlToggle" class="icon-btn"><i class="fas fa-exchange-alt"></i></button>
+                <div class="icon-btn"><i class="fas fa-bell"></i></div>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <!-- DASHBOARD SECTION -->
+            <div id="dashboard" class="admin-section">
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-header"><span>Total Rooms</span><i class="fas fa-door-open"></i></div><div class="stat-value">8</div><div class="stat-change">+2 this month</div></div>
+                    <div class="stat-card"><div class="stat-header"><span>Active Bookings</span><i class="fas fa-calendar-check"></i></div><div class="stat-value">42</div><div class="stat-change">+12% vs last week</div></div>
+                    <div class="stat-card"><div class="stat-header"><span>Total Customers</span><i class="fas fa-users"></i></div><div class="stat-value">1,284</div><div class="stat-change">+18 this week</div></div>
+                    <div class="stat-card"><div class="stat-header"><span>Revenue (MTD)</span><i class="fas fa-dollar-sign"></i></div><div class="stat-value">$24.9k</div><div class="stat-change">↑ 8% from last month</div></div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header"><h3>📅 Recent Bookings</h3><a href="#" onclick="activateSection('bookings'); return false;">View All →</a></div>
+                    <div style="overflow-x: auto;">
+                        <table class="data-table">
+                            <thead><tr><th>Booking ID</th><th>Customer</th><th>Room</th><th>Date</th><th>Status</th><th>Amount</th></tr></thead>
+                            <tbody>
+                                <tr><td>#BK-4892</td><td>Mike Reynolds</td><td>VIP Neon Suite</td><td>May 25, 8PM</td><td><span class="badge badge-pending">Pending</span></td><td>$299</td></tr>
+                                <tr><td>#BK-4891</td><td>Sarah Johnson</td><td>Popstar Room</td><td>May 24, 9PM</td><td><span class="badge badge-completed">Completed</span></td><td>$149</td></tr>
+                                <tr><td>#BK-4890</td><td>David Williams</td><td>Retro 80s</td><td>May 23, 7PM</td><td><span class="badge badge-completed">Completed</span></td><td>$110</td></tr>
+                                <tr><td>#BK-4889</td><td>Lisa Chen</td><td>Presidential Lounge</td><td>May 22, 10PM</td><td><span class="badge badge-active">Active</span></td><td>$350</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header"><h3>🎤 Today's Schedule</h3></div>
+                    <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">8:00 PM</span><span>VIP Neon Suite - Birthday Party</span><span style="color: var(--neon-purple);">12 guests</span></div>
+                        <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">9:30 PM</span><span>Popstar Room - Bachelorette</span><span style="color: var(--neon-purple);">15 guests</span></div>
+                        <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">11:00 PM</span><span>Presidential Lounge - Corporate</span><span style="color: var(--neon-purple);">20 guests</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROOMS SECTION -->
+            <div id="rooms" class="admin-section hidden">
+                <div class="dashboard-card"><div class="card-header"><h3>🏠 Room Management</h3><button class="action-btn"><i class="fas fa-plus"></i> Add Room</button></div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table"><thead><tr><th>Room Name</th><th>Capacity</th><th>Price/hr</th><th>Status</th><th>Bookings (Month)</th><th>Action</th></tr></thead>
+                    <tbody>
+                        <tr><td>VIP Neon Suite</td><td>20</td><td>$200-$350</td><td><span class="badge badge-active">Active</span></td><td>45</td><td><a href="#" style="color: var(--neon-purple);">Edit</a></td></tr>
+                        <tr><td>Popstar Room</td><td>15</td><td>$80-$150</td><td><span class="badge badge-active">Active</span></td><td>62</td><td><a href="#" style="color: var(--neon-purple);">Edit</a></td></tr>
+                        <tr><td>Retro 80s</td><td>12</td><td>$60-$110</td><td><span class="badge badge-active">Active</span></td><td>38</td><td><a href="#" style="color: var(--neon-purple);">Edit</a></td></tr>
+                        <tr><td>Presidential Lounge</td><td>30</td><td>$250-$400</td><td><span class="badge badge-active">Active</span></td><td>28</td><td><a href="#" style="color: var(--neon-purple);">Edit</a></td></tr>
+                    </tbody></table>
+                </div></div>
+            </div>
+
+            <!-- BOOKINGS SECTION -->
+            <div id="bookings" class="admin-section hidden">
+                <div class="dashboard-card"><div class="card-header"><h3>📅 All Bookings</h3></div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table"><thead><tr><th>ID</th><th>Customer</th><th>Room</th><th>Date</th><th>Time</th><th>Guests</th><th>Status</th><th>Amount</th></tr></thead>
+                    <tbody>
+                        <tr><td>#BK-4892</td><td>Mike Reynolds</td><td>VIP Neon Suite</td><td>May 25</td><td>8PM</td><td>12</td><td><span class="badge badge-pending">Pending</span></td><td>$299</td></tr>
+                        <tr><td>#BK-4891</td><td>Sarah Johnson</td><td>Popstar Room</td><td>May 24</td><td>9PM</td><td>8</td><td><span class="badge badge-completed">Completed</span></td><td>$149</td></tr>
+                        <tr><td>#BK-4890</td><td>David Williams</td><td>Retro 80s</td><td>May 23</td><td>7PM</td><td>6</td><td><span class="badge badge-completed">Completed</span></td><td>$110</td></tr>
+                        <tr><td>#BK-4889</td><td>Lisa Chen</td><td>Presidential Lounge</td><td>May 22</td><td>10PM</td><td>18</td><td><span class="badge badge-active">Active</span></td><td>$350</td></tr>
+                    </tbody></table>
+                </div></div>
+            </div>
+
+            <!-- CUSTOMERS SECTION -->
+            <div id="customers" class="admin-section hidden">
+                <div class="dashboard-card"><div class="card-header"><h3>👥 Customer Directory</h3></div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table"><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Total Visits</th><th>Member Since</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td>Mike Reynolds</td><td>mike@email.com</td><td>(555) 223-7890</td><td>8</td><td>Jan 2024</td><td><span class="badge badge-active">Active</span></td></tr>
+                        <tr><td>Sarah Johnson</td><td>sarah@email.com</td><td>(555) 345-6789</td><td>5</td><td>Mar 2024</td><td><span class="badge badge-active">Active</span></td></tr>
+                        <tr><td>David Williams</td><td>david@email.com</td><td>(555) 456-7890</td><td>3</td><td>Jun 2024</td><td><span class="badge badge-active">Active</span></td></tr>
+                        <tr><td>Lisa Chen</td><td>lisa@email.com</td><td>(555) 567-8901</td><td>12</td><td>Sep 2023</td><td><span class="badge badge-active">Active</span></td></tr>
+                    </tbody></table>
+                </div></div>
+            </div>
+
+            <!-- PACKAGES SECTION -->
+            <div id="packages" class="admin-section hidden">
+                <div class="dashboard-card"><div class="card-header"><h3>💰 Package Management</h3></div>
+                <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                    <div class="stat-card"><h4>Silver Beat</h4><p style="color: var(--neon-purple); font-size: 1.5rem; font-weight: bold;">$299</p><p>2 hours, 12 guests, snacks</p><button class="action-btn secondary" style="margin-top: 0.8rem; width: 100%;">Edit</button></div>
+                    <div class="stat-card"><h4>Gold Resonance</h4><p style="color: var(--neon-purple); font-size: 1.5rem; font-weight: bold;">$599</p><p>3 hours, 20 guests, champagne</p><button class="action-btn secondary" style="margin-top: 0.8rem; width: 100%;">Edit</button></div>
+                    <div class="stat-card"><h4>Platinum Encore</h4><p style="color: var(--neon-purple); font-size: 1.5rem; font-weight: bold;">$999</p><p>4 hours, 30 guests, open bar</p><button class="action-btn secondary" style="margin-top: 0.8rem; width: 100%;">Edit</button></div>
+                </div></div>
+            </div>
+
+            <!-- EVENTS SECTION -->
+            <div id="events" class="admin-section hidden">
+                <div class="dashboard-card"><div class="card-header"><h3>🎉 Upcoming Events</h3></div>
+                <div style="overflow-x: auto;"><table class="data-table"><thead><tr><th>Event Name</th><th>Date</th><th>Time</th><th>Capacity</th><th>Bookings</th><th>Status</th></tr></thead>
+                <tbody><tr><td>Neon Glow Party</td><td>May 28</td><td>8PM</td><td>100</td><td>45</td><td><span class="badge badge-active">Published</span></td></tr>
+                <tr><td>Karaoke Battle Royale</td><td>June 5</td><td>9PM</td><td>80</td><td>32</td><td><span class="badge badge-active">Published</span></td></tr>
+                <tr><td>Throwback 90's Night</td><td>June 12</td><td>7PM</td><td>120</td><td>28</td><td><span class="badge badge-pending">Draft</span></td></tr>
+                </tbody></table></div></div>
+            </div>
+
+            <!-- STAFF SECTION -->
+            <div id="staff" class="admin-section hidden">
+                <div class="dashboard-card"><div class="card-header"><h3>👨‍💼 Staff Management</h3></div>
+                <table class="data-table"><thead><tr><th>Name</th><th>Role</th><th>Email</th><th>Status</th><th>Shift</th></tr></thead>
+                <tbody><tr><td>Alex Morgan</td><td>Super Admin</td><td>alex@echokaraoke.com</td><td><span class="badge badge-active">Active</span></td><td>Full-time</td></tr>
+                <tr><td>Jessica Chen</td><td>Event Manager</td><td>jessica@echokaraoke.com</td><td><span class="badge badge-active">Active</span></td><td>Evening</td></tr>
+                <tr><td>Mike Reynolds</td><td>Technician</td><td>mike@echokaraoke.com</td><td><span class="badge badge-active">Active</span></td><td>Night</td></tr>
+                </tbody></table></div>
+            </div>
+
+            <!-- REPORTS SECTION -->
+            <div id="reports" class="admin-section hidden">
+                <div class="dashboard-card"><div class="card-header"><h3>📊 Reports</h3></div>
+                <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="stat-card"><i class="fas fa-file-pdf" style="color: var(--neon-purple); font-size: 1.5rem;"></i><h4>Monthly Revenue</h4><button class="action-btn secondary" style="margin-top: 0.8rem; width: 100%;">Download</button></div>
+                    <div class="stat-card"><i class="fas fa-chart-bar" style="color: var(--neon-purple); font-size: 1.5rem;"></i><h4>Customer Analytics</h4><button class="action-btn secondary" style="margin-top: 0.8rem; width: 100%;">Download</button></div>
+                    <div class="stat-card"><i class="fas fa-calendar" style="color: var(--neon-purple); font-size: 1.5rem;"></i><h4>Booking Summary</h4><button class="action-btn secondary" style="margin-top: 0.8rem; width: 100%;">Download</button></div>
+                </div></div>
+            </div>
+
+            <!-- SETTINGS SECTION -->
+            <div id="settings" class="admin-section hidden">
+                <div class="dashboard-card"><div class="card-header"><h3>⚙️ System Settings</h3></div>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;"><span>Email Notifications</span><div style="width: 3rem; height: 1.5rem; background: var(--neon-purple); border-radius: 20px; cursor: poPoppins;"></div></div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;"><span>Auto-confirm Bookings</span><div style="width: 3rem; height: 1.5rem; background: var(--border-light); border-radius: 20px; cursor: poPoppins;"></div></div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;"><span>Maintenance Mode</span><div style="width: 3rem; height: 1.5rem; background: var(--border-light); border-radius: 20px; cursor: poPoppins;"></div></div>
+                </div></div>
+            </div>
+
+            <!-- LOGOUT SECTION -->
+            <div id="logout" class="admin-section hidden">
+                <div class="dashboard-card" style="text-align: center; max-width: 450px; margin: 0 auto;">
+                    <i class="fas fa-sign-out-alt" style="font-size: 3rem; color: var(--neon-purple); margin-bottom: 1rem;"></i>
+                    <h3>Sign out of Admin Panel?</h3>
+                    <p style="color: var(--text-secondary); margin: 1rem 0;">Your admin session will be terminated.</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center;">
+                        <button onclick="activateSection('dashboard')" style="background: var(--hover-bg); border: 1px solid var(--border-light); padding: 0.6rem 1.5rem; border-radius: 30px; cursor: poPoppins;">Cancel</button>
+                        <button onclick="window.location.href='index.html'" style="background: #ef4444; color: white; border: none; padding: 0.6rem 1.5rem; border-radius: 30px; cursor: poPoppins;">Yes, Sign Out</button>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <p>© 2026 Echo Karaoke Lounge · Admin Dashboard v2.0</p>
+            </footer>
+        </div>
+    </main>
+</div>
+
+<script>
+    (function() {
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+        const rtlToggle = document.getElementById('rtlToggle');
+        const sidebar = document.getElementById('sidebar');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        // Theme
+        let savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        function updateThemeIcon(theme) { if(themeToggle) themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>'; }
+        updateThemeIcon(savedTheme);
+        function toggleTheme() {
+            let cur = html.getAttribute('data-theme');
+            let nw = cur === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', nw);
+            localStorage.setItem('theme', nw);
+            updateThemeIcon(nw);
+        }
+        if(themeToggle) themeToggle.addEventListener('click', toggleTheme);
+
+        // RTL
+        let savedDir = localStorage.getItem('direction') || 'ltr';
+        html.setAttribute('dir', savedDir);
+        function toggleRtl() {
+            let cur = html.getAttribute('dir');
+            let nw = cur === 'rtl' ? 'ltr' : 'rtl';
+            html.setAttribute('dir', nw);
+            localStorage.setItem('direction', nw);
+        }
+        if(rtlToggle) rtlToggle.addEventListener('click', toggleRtl);
+
+        // Mobile Menu
+        function closeMobileMenu() { sidebar.classList.remove('mobile-open'); mobileOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+        function openMobileMenu() { sidebar.classList.add('mobile-open'); mobileOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
+        if(mobileOverlay) mobileOverlay.addEventListener('click', closeMobileMenu);
+
+        // Navigation
+        const sections = ['dashboard', 'rooms', 'bookings', 'customers', 'packages', 'events', 'staff', 'reports', 'settings', 'logout'];
+        window.activateSection = function(sectionId) {
+            sections.forEach(id => { const el = document.getElementById(id); if(el) el.classList.add('hidden'); });
+            const activeEl = document.getElementById(sectionId);
+            if(activeEl) activeEl.classList.remove('hidden');
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+                if(link.dataset.section === sectionId) link.classList.add('active');
+            });
+            if(window.innerWidth < 1024) closeMobileMenu();
+        };
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = this.dataset.section;
+                if(section) activateSection(section);
+            });
+        });
+        activateSection('dashboard');
+    })();
+</script>
+</body>
+</html>

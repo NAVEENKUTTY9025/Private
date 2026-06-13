@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, viewport-fit=cover">
+    <meta name="description" content="404 - Page not found. Echo Karaoke Lounge - The page you're looking for doesn't exist.">
+    <title>404 | Echo Karaoke - Page Not Found</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A855F7'%3E%3Cpath d='M12 3v1m0 16v1M9 6l-1 1m8 8l1-1M6 9H5m14 0h-1m-8 8l1 1m6-8l1-1M6 15H5m14 0h-1M4 4l2 2m12-2l-2 2m2 12l-2-2M6 18l2-2' stroke='%23A855F7' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23A855F7'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:opsz,wght@14..32,300..900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0A0A0A;
+            --neon-purple: #A855F7;
+            --neon-pink: #EC4899;
+            --text-main: #FFFFFF;
+            --text-muted: #B0B0B0;
+            --heading-font: 'Montserrat', sans-serif;
+            --overlay-start: rgba(10,10,10,0.85);
+            --overlay-end: rgba(10,10,10,0.6);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #FFFFFF;
+            --neon-purple: #9333EA;
+            --neon-pink: #DB2777;
+            --text-main: #212529;
+            --text-muted: #6C757D;
+            --overlay-start: rgba(255,255,255,0.85);
+            --overlay-end: rgba(255,255,255,0.6);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        /* RTL Support */
+        [dir="rtl"] {
+            text-align: right;
+        }
+        [dir="rtl"] .top-bar {
+            flex-direction: row-reverse;
+        }
+        [dir="rtl"] .toggle-group {
+            flex-direction: row-reverse;
+        }
+        [dir="rtl"] .error-actions {
+            flex-direction: row-reverse;
+        }
+
+        /* Fullscreen wrapper */
+        .error-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--overlay-start) 0%, var(--overlay-end) 100%), url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+            overflow: hidden;
+            transition: background 0.3s;
+        }
+
+        /* Top Bar - Only Logo on Left, Toggles on Right */
+        .top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 2.5rem;
+            z-index: 100;
+            background: transparent;
+        }
+
+        /* Logo - Left Corner Only */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+        .logo:hover {
+            transform: scale(1.02);
+        }
+        .logo-icon {
+            width: 2.8rem;
+            height: 2.8rem;
+            background: rgba(168, 85, 247, 0.15);
+            border-radius: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--neon-purple);
+        }
+        .logo-icon i {
+            color: var(--neon-purple);
+            font-size: 1.8rem;
+        }
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .logo-text {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+            font-family: var(--heading-font);
+        }
+        .logo-text span {
+            color: var(--neon-purple);
+        }
+        .logo-tagline {
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* Toggle Group - Right Corner (Theme + RTL) */
+        .toggle-group {
+            display: flex;
+            gap: 0.8rem;
+        }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgba(168, 85, 247, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            border: 1px solid var(--neon-purple);
+            cursor: poPoppins;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            backdrop-filter: blur(4px);
+        }
+        .icon-btn:hover {
+            background: var(--neon-purple);
+            color: #0A0A0A;
+            transform: scale(1.05);
+        }
+        [data-theme="light"] .icon-btn:hover {
+            color: #FFFFFF;
+        }
+
+        /* Centered Error Content - Fixed, No Scroll */
+        .center-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 600px;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+
+        /* 404 Number Styling */
+        .error-number {
+            font-size: clamp(8rem, 20vw, 12rem);
+            font-weight: 800;
+            font-family: var(--heading-font);
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(168,85,247,0.3);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Glitch effect on hover */
+        .error-number {
+            animation: subtleGlow 2s ease-in-out infinite;
+        }
+        @keyframes subtleGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(168,85,247,0.2); }
+            50% { text-shadow: 0 0 40px rgba(168,85,247,0.5); }
+        }
+
+        .error-title {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .error-message {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Action Buttons */
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            color: #FFFFFF;
+            padding: 0.9rem 1.8rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(168,85,247,0.5);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--neon-purple);
+            color: var(--text-main);
+            padding: 0.9rem 1.8rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        .btn-outline:hover {
+            background: var(--neon-purple);
+            color: #FFFFFF;
+            transform: translateY(-3px);
+        }
+
+        /* Fun Microphone Animation */
+        .mic-icon {
+            font-size: 4rem;
+            color: var(--neon-purple);
+            margin-bottom: 1rem;
+            opacity: 0.7;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Quick Links */
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .quick-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .quick-link:hover {
+            color: var(--neon-purple);
+            transform: translateX(3px);
+        }
+        [dir="rtl"] .quick-link:hover {
+            transform: translateX(-3px);
+        }
+
+        /* Hide scrollbar completely */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Responsive */
+        @media (min-width: 1200px) { 
+            .desktop-nav { display: flex; } 
+            .navbar-right-desktop { display: flex; } 
+            .mobile-menu-btn { display: none; }
+        }
+        @media (max-width: 1199px) { 
+            .desktop-nav { display: none; } 
+            .navbar-right-desktop { display: none; } 
+            .mobile-menu-btn { display: block; }
+        }
+
+        @media (max-width: 520px) {
+            .top-bar {
+                padding: 1rem 1.5rem;
+            }
+            .logo-text {
+                font-size: 1rem;
+            }
+            .logo-tagline {
+                font-size: 0.45rem;
+            }
+            .logo-icon {
+                width: 2.2rem;
+                height: 2.2rem;
+            }
+            .logo-icon i {
+                font-size: 1.2rem;
+            }
+            .icon-btn {
+                width: 2.2rem;
+                height: 2.2rem;
+            }
+            .error-actions {
+                gap: 0.8rem;
+            }
+            .btn-primary, .btn-outline {
+                padding: 0.7rem 1.4rem;
+                font-size: 0.8rem;
+            }
+            .mic-icon {
+                font-size: 3rem;
+            }
+        }
+
+        /* Fade in animation */
+        .center-container {
+            animation: fadeInUp 0.5s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="error-wrapper">
+    <!-- Top Bar: Only Logo Left | Toggles Right - NO NAV BAR, NO FOOTER -->
+    <div class="top-bar">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-microphone-alt"></i></div>
+            <div class="logo-text-wrapper">
+                <div class="logo-text">ECHO<span> Karaoke</span></div>
+                <span class="logo-tagline">premium private rooms</span>
+            </div>
+        </a>
+        <div class="toggle-group">
+            <button class="icon-btn" id="theme-toggle" aria-label="Dark/Light Mode"><i class="fas fa-sun"></i></button>
+            <button class="icon-btn" id="rtl-toggle" aria-label="RTL Mode"><i class="fas fa-exchange-alt"></i></button>
+        </div>
+    </div>
+
+    <!-- Centered 404 Content - Fixed, No Scroll -->
+    <div class="center-container">
+        <div class="mic-icon">
+            <i class="fas fa-microphone-alt"></i>
+        </div>
+        <div class="error-number">404</div>
+        <h1 class="error-title">Page Not Found</h1>
+        <p class="error-message">
+            Oops! Looks like this note is off-key. The page you're looking for doesn't exist or has been moved.
+        </p>
+        <div class="error-actions">
+            <a href="index.html" class="btn-primary">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+            <a href="gallery.html" class="btn-outline">
+                <i class="fas fa-images"></i> Explore Gallery
+            </a>
+        </div>
+        <div class="quick-links">
+            <a href="room.html" class="quick-link"><i class="fas fa-door-open"></i> Rooms</a>
+            <a href="event.html" class="quick-link"><i class="fas fa-calendar-alt"></i> Events</a>
+            <a href="package.html" class="quick-link"><i class="fas fa-tags"></i> Packages</a>
+            <a href="contact.html" class="quick-link"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+        const rtlToggle = document.getElementById('rtl-toggle');
+        
+        // ----- THEME MANAGEMENT (Dark/Light) -----
+        let savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        
+        function updateThemeIcon(theme) {
+            const icon = themeToggle?.querySelector('i');
+            if (icon) {
+                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        }
+        updateThemeIcon(savedTheme);
+        
+        function toggleTheme() {
+            let current = html.getAttribute('data-theme');
+            let newTheme = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+        
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        // ----- RTL MANAGEMENT -----
+        let savedDir = localStorage.getItem('direction') || 'ltr';
+        html.setAttribute('dir', savedDir);
+        
+        function toggleRtl() {
+            let currentDir = html.getAttribute('dir');
+            let newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+            html.setAttribute('dir', newDir);
+            localStorage.setItem('direction', newDir);
+        }
+        
+        if (rtlToggle) {
+            rtlToggle.addEventListener('click', toggleRtl);
+        }
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, viewport-fit=cover">
+    <meta name="description" content="Register for Echo Karaoke Lounge – create your account, unlock VIP perks, and start booking private rooms.">
+    <title>Echo Karaoke | Create Account</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A855F7'%3E%3Cpath d='M12 3v1m0 16v1M9 6l-1 1m8 8l1-1M6 9H5m14 0h-1m-8 8l1 1m6-8l1-1M6 15H5m14 0h-1M4 4l2 2m12-2l-2 2m2 12l-2-2M6 18l2-2' stroke='%23A855F7' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23A855F7'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:opsz,wght@14..32,300..900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #111111;
+            --neon-purple: #A855F7;
+            --text-main: #FFFFFF;
+            --text-heading: #FFFFFF;
+            --text-muted: #B0B0B0;
+            --border-dim: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(17, 17, 17, 0.95);
+            --input-bg: #1a1a1a;
+            --heading-font: 'Montserrat', sans-serif;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --neon-purple: #9333EA;
+            --text-main: #212529;
+            --text-heading: #000000;
+            --text-muted: #6C757D;
+            --border-dim: rgba(0, 0, 0, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --input-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        /* RTL Support */
+        [dir="rtl"] {
+            text-align: right;
+        }
+        [dir="rtl"] .top-bar {
+            flex-direction: row-reverse;
+        }
+        [dir="rtl"] .toggle-group {
+            flex-direction: row-reverse;
+        }
+        [dir="rtl"] .input-group i {
+            left: auto;
+            right: 1rem;
+        }
+        [dir="rtl"] .input-group input {
+            padding-left: 1rem;
+            padding-right: 3rem;
+        }
+        [dir="rtl"] .terms-row {
+            flex-direction: row-reverse;
+        }
+
+        /* Fullscreen wrapper with gradient background */
+        .register-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 100%), url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+            overflow: hidden;
+        }
+        [data-theme="light"] .register-wrapper {
+            background: radial-gradient(ellipse at 30% 40%, rgba(147,51,234,0.06) 0%, var(--bg-primary) 100%);
+        }
+
+        /* Top Bar - Clean, no white navbar */
+        .top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 2.5rem;
+            z-index: 100;
+            background: transparent;
+        }
+
+        /* Logo - Left Corner */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+        .logo:hover {
+            transform: scale(1.02);
+        }
+        .logo-icon {
+            width: 2.8rem;
+            height: 2.8rem;
+            background: rgba(168, 85, 247, 0.15);
+            border-radius: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--neon-purple);
+        }
+        .logo-icon i {
+            color: var(--neon-purple);
+            font-size: 1.8rem;
+        }
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .logo-text {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            letter-spacing: -0.02em;
+            font-family: var(--heading-font);
+        }
+        .logo-text span {
+            color: var(--neon-purple);
+        }
+        .logo-tagline {
+            font-size: 0.5rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* Toggle Group - Right Corner */
+        .toggle-group {
+            display: flex;
+            gap: 0.7rem;
+        }
+        .icon-btn {
+            width: 2.3rem;
+            height: 2.3rem;
+            background: rgba(168, 85, 247, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-heading);
+            border: 1px solid var(--neon-purple);
+            cursor: poPoppins;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            backdrop-filter: blur(4px);
+        }
+        .icon-btn:hover {
+            background: var(--neon-purple);
+            color: #0A0A0A;
+            transform: scale(1.05);
+        }
+        [data-theme="light"] .icon-btn:hover {
+            color: #FFFFFF;
+        }
+
+        /* Centered Container - NO SCROLL */
+        .center-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 420px;
+            padding: 0 1.2rem;
+        }
+
+        /* Glassmorphism Card - NO SCROLL INSIDE */
+        .register-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border-radius: 1.8rem;
+            padding: 1.8rem;
+            border: 1px solid var(--neon-purple);
+            box-shadow: 0 25px 45px -12px rgba(168, 85, 247, 0.3);
+            transition: all 0.3s;
+            overflow: visible;
+        }
+        
+        .register-header {
+            text-align: center;
+            margin-bottom: 1.4rem;
+        }
+        .register-header h2 {
+            font-size: 1.6rem;
+            font-family: var(--heading-font);
+            margin-bottom: 0.3rem;
+            color: var(--text-heading);
+        }
+        .register-header p {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        /* Input Fields - Tightened */
+        .input-group {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        .input-group i {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neon-purple);
+            font-size: 0.9rem;
+            poPoppins-events: none;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 0.7rem 0.9rem 0.7rem 2.8rem;
+            background: var(--input-bg);
+            border: 1px solid var(--border-dim);
+            border-radius: 0.8rem;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.2);
+        }
+        .input-group input::placeholder {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* First and Last Name - One by one (stacked vertically, not side by side) */
+        .name-field {
+            margin-bottom: 1rem;
+        }
+
+        /* Terms & Conditions - Tightened */
+        .terms-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0 1.2rem;
+            font-size: 0.7rem;
+        }
+        .terms-row input {
+            accent-color: var(--neon-purple);
+            width: 0.9rem;
+            height: 0.9rem;
+            cursor: poPoppins;
+            margin: 0;
+        }
+        .terms-row label {
+            color: var(--text-muted);
+            cursor: poPoppins;
+            line-height: 1.3;
+        }
+        .terms-row a {
+            color: var(--neon-purple);
+            text-decoration: none;
+        }
+        .terms-row a:hover {
+            text-decoration: underline;
+        }
+
+        /* Register Button - Tightened */
+        .register-btn {
+            width: 100%;
+            background: var(--neon-purple);
+            color: #0A0A0A;
+            border: none;
+            padding: 0.7rem;
+            border-radius: 0.8rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: poPoppins;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .register-btn:hover {
+            background: #c084fc;
+            transform: translateY(-2px);
+        }
+        [data-theme="light"] .register-btn {
+            color: #FFFFFF;
+        }
+        [data-theme="light"] .register-btn:hover {
+            color: #FFFFFF;
+        }
+
+        /* Divider - Tightened */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1.2rem 0 1rem;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+        }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border-dim);
+        }
+        .divider span {
+            margin: 0 0.8rem;
+        }
+
+        /* Social Signup - Tightened */
+        .social-signup {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .social-btn {
+            width: 2.4rem;
+            height: 2.4rem;
+            border-radius: 50%;
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid var(--border-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+        .social-btn:hover {
+            background: var(--neon-purple);
+            color: #0A0A0A;
+            transform: translateY(-2px);
+            border-color: var(--neon-purple);
+        }
+        [data-theme="light"] .social-btn:hover {
+            color: #FFFFFF;
+        }
+
+        /* Login Link - Tightened */
+        .login-link {
+            text-align: center;
+            margin-top: 0.8rem;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+        .login-link a {
+            color: var(--neon-purple);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Message Alert - Tightened */
+        .message {
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 0.6rem;
+            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            display: none;
+        }
+        .message.error {
+            background: rgba(220, 38, 38, 0.15);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+            display: block;
+        }
+        .message.success {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            border: 1px solid #22c55e;
+            display: block;
+        }
+
+        /* Hide all scrollbars */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Responsive */
+        @media (min-width: 1200px) { 
+            .desktop-nav { display: flex; } 
+            .navbar-right-desktop { display: flex; } 
+            .mobile-menu-btn { display: none; }
+        }
+        @media (max-width: 1199px) { 
+            .desktop-nav { display: none; } 
+            .navbar-right-desktop { display: none; } 
+            .mobile-menu-btn { display: block; }
+        }
+        @media (max-width: 480px) {
+            .top-bar {
+                padding: 0.8rem 1.2rem;
+            }
+            .logo-text {
+                font-size: 1rem;
+            }
+            .logo-tagline {
+                font-size: 0.45rem;
+            }
+            .logo-icon {
+                width: 2rem;
+                height: 2rem;
+            }
+            .logo-icon i {
+                font-size: 1rem;
+            }
+            .register-card {
+                padding: 1.3rem;
+            }
+            .register-header h2 {
+                font-size: 1.3rem;
+            }
+            .icon-btn {
+                width: 2rem;
+                height: 2rem;
+            }
+            .center-container {
+                max-width: 360px;
+                padding: 0 1rem;
+            }
+        }
+
+        /* Animation */
+        .register-card {
+            animation: fadeInUp 0.4s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="register-wrapper">
+    <!-- Top Bar: Logo Left | Toggles Right - NO WHITE NAV BAR -->
+    <div class="top-bar">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-microphone-alt"></i></div>
+            <div class="logo-text-wrapper">
+                <div class="logo-text">ECHO<span> Karaoke</span></div>
+                <span class="logo-tagline">premium private rooms</span>
+            </div>
+        </a>
+        <div class="toggle-group">
+            <button class="icon-btn" id="theme-toggle" aria-label="Dark/Light Mode"><i class="fas fa-sun"></i></button>
+            <button class="icon-btn" id="rtl-toggle" aria-label="RTL Mode"><i class="fas fa-exchange-alt"></i></button>
+        </div>
+    </div>
+
+    <!-- Centered Register Container - Fixed, No Page Scroll, No Inner Scroll -->
+    <div class="center-container">
+        <div class="register-card">
+            <div class="register-header">
+                <h2>Create Account</h2>
+                <p>Join Echo Karaoke & start your VIP journey</p>
+            </div>
+            
+            <div id="messageBox" class="message"></div>
+            
+            <form id="registerForm">
+                <!-- First Name - one by one (stacked) -->
+                <div class="input-group name-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="firstName" placeholder="First name" required>
+                </div>
+                
+                <!-- Last Name - one by one (stacked) -->
+                <div class="input-group name-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="lastName" placeholder="Last name" required>
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Email address" required autocomplete="email">
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="phone" placeholder="Phone number (optional)">
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-check-circle"></i>
+                    <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                </div>
+                
+                <div class="terms-row">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">
+                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="register-btn"><i class="fas fa-user-plus"></i> Sign Up</button>
+            </form>
+            
+            <div class="divider"><span>or sign up with</span></div>
+            
+            <div class="social-signup">
+                <a href="#" class="social-btn"><i class="fab fa-google"></i></a>
+                <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-btn"><i class="fab fa-apple"></i></a>
+            </div>
+            
+            <div class="login-link">
+                Already have an account? <a href="login.html">Sign in</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+        const rtlToggle = document.getElementById('rtl-toggle');
+        
+        // ----- THEME MANAGEMENT -----
+        let savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        
+        function updateThemeIcon(theme) {
+            const icon = themeToggle?.querySelector('i');
+            if (icon) {
+                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        }
+        updateThemeIcon(savedTheme);
+        
+        function toggleTheme() {
+            let current = html.getAttribute('data-theme');
+            let newTheme = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+        
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        // ----- RTL MANAGEMENT -----
+        let savedDir = localStorage.getItem('direction') || 'ltr';
+        html.setAttribute('dir', savedDir);
+        
+        function toggleRtl() {
+            let currentDir = html.getAttribute('dir');
+            let newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+            html.setAttribute('dir', newDir);
+            localStorage.setItem('direction', newDir);
+        }
+        
+        if (rtlToggle) {
+            rtlToggle.addEventListener('click', toggleRtl);
+        }
+        
+        // ----- REGISTRATION FORM HANDLER -----
+        const registerForm = document.getElementById('registerForm');
+        const messageBox = document.getElementById('messageBox');
+        
+        if (registerForm) {
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const firstName = document.getElementById('firstName').value.trim();
+                const lastName = document.getElementById('lastName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const termsChecked = document.getElementById('terms').checked;
+                
+                // Validation
+                if (!firstName || !lastName || !email || !password) {
+                    messageBox.textContent = '❌ Please fill in all required fields.';
+                    messageBox.className = 'message error';
+                    setTimeout(() => {
+                        messageBox.className = 'message';
+                        messageBox.textContent = '';
+                    }, 3000);
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    messageBox.textContent = '❌ Passwords do not match.';
+                    messageBox.className = 'message error';
+                    setTimeout(() => {
+                        messageBox.className = 'message';
+                        messageBox.textContent = '';
+                    }, 3000);
+                    return;
+                }
+                
+                if (password.length < 6) {
+                    messageBox.textContent = '❌ Password must be at least 6 characters.';
+                    messageBox.className = 'message error';
+                    setTimeout(() => {
+                        messageBox.className = 'message';
+                        messageBox.textContent = '';
+                    }, 3000);
+                    return;
+                }
+                
+                if (!termsChecked) {
+                    messageBox.textContent = '❌ You must agree to the Terms & Conditions.';
+                    messageBox.className = 'message error';
+                    setTimeout(() => {
+                        messageBox.className = 'message';
+                        messageBox.textContent = '';
+                    }, 3000);
+                    return;
+                }
+                
+                // Simulate successful registration
+                const userData = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    phone: phone,
+                    registeredAt: new Date().toISOString()
+                };
+                localStorage.setItem('registeredUser', JSON.stringify(userData));
+                localStorage.setItem('userEmail', email);
+                
+                messageBox.textContent = '✅ Registration successful! Redirecting to login...';
+                messageBox.className = 'message success';
+                
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1500);
+            });
+        }
+    })();
+</script>
+</body>
+</html>

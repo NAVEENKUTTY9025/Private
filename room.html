@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Echo Karaoke Rooms – Explore our premium private party rooms, each with unique themes, state-of-the-art sound, and neon-lit luxury. Book your perfect room.">
+    <title>Echo Karaoke | Our Rooms – Neon Luxury Private Suites</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A855F7'%3E%3Cpath d='M12 3v1m0 16v1M9 6l-1 1m8 8l1-1M6 9H5m14 0h-1m-8 8l1 1m6-8l1-1M6 15H5m14 0h-1M4 4l2 2m12-2l-2 2m2 12l-2-2M6 18l2-2' stroke='%23A855F7' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23A855F7'/%3E%3C/svg%3E">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Poppins + Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:opsz,wght@14..32,300..900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* COLOR THEME: Black #0A0A0A, White #FFFFFF, Neon Purple #A855F7 - NO GLOW */
+        :root {
+            --bg-black: #0A0A0A;
+            --text-white: #FFFFFF;
+            --neon-purple: #A855F7;
+            --border-dim: rgba(255, 255, 255, 0.12);
+            --card-bg: #111111;
+            --heading-font: 'Montserrat', sans-serif;
+            --navbar-bg: #0A0A0A;
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #111111;
+            --text-main: #FFFFFF;
+            --text-heading: #FFFFFF;
+            --footer-text: #B0B0B0;
+        }
+
+        /* LIGHT MODE */
+        [data-theme="light"] {
+            --bg-black: #FFFFFF;
+            --text-white: #111111;
+            --neon-purple: #9333EA;
+            --border-dim: rgba(0, 0, 0, 0.1);
+            --card-bg: #F5F5F5;
+            --navbar-bg: #FFFFFF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --text-main: #212529;
+            --text-heading: #000000;
+            --footer-text: #6C757D;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* RTL Support */
+        [dir="rtl"] {
+            text-align: right;
+        }
+        [dir="rtl"] .navbar-flex,
+        [dir="rtl"] .hero-actions,
+        [dir="rtl"] .footer-main,
+        [dir="rtl"] .footer-bottom {
+            flex-direction: row-reverse;
+        }
+        [dir="rtl"] .room-card,
+        [dir="rtl"] .feature-grid {
+            direction: rtl;
+        }
+
+        /* ===== NAVBAR (same as main) ===== */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--neon-purple);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0.7rem 0;
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .logo-icon i { color: var(--neon-purple); font-size: 1.8rem; }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .logo:hover { transform: scale(1.02); }
+        .logo-icon {
+            width: 2.8rem;
+            height: 2.8rem;
+            background: rgba(168, 85, 247, 0.15);
+            border-radius: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--neon-purple);
+        }
+        .logo-text-wrapper {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .logo-text {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            letter-spacing: -0.02em;
+            font-family: var(--heading-font);
+        }
+        .logo-text span { color: var(--neon-purple); }
+        .logo-tagline {
+            font-size: 0.6rem;
+            color: var(--footer-text);
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .desktop-nav { display: flex; align-items: center; gap: 0.25rem; background: rgba(128,128,128,0.05); padding: 0.25rem; border-radius: 60px; }
+        .nav-link { color: var(--text-main); padding: 0.5rem 1rem; transition: 0.2s; font-weight: 500; font-size: 0.9rem; border-radius: 40px; cursor: poPoppins; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; }
+        .nav-link:hover { color: var(--neon-purple); background-color: rgba(168,85,247,0.2); }
+        .nav-link.active { background: var(--neon-purple); color: #0A0A0A; font-weight: 600; }
+        [data-theme="light"] .nav-link.active { color: #FFFFFF; }
+        
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-menu { position: absolute; top: 100%; left: 0; background-color: var(--card-bg); border: 1px solid var(--neon-purple); border-radius: 20px; min-width: 180px; opacity: 0; visibility: hidden; transform: translateY(12px); transition: 0.25s; z-index: 1000; padding: 0.5rem 0; }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-item { display: block; padding: 10px 20px; color: var(--text-main); text-decoration: none; transition: 0.2s; }
+        .dropdown-item:hover { background-color: var(--neon-purple); color: #0A0A0A; padding-left: 26px; }
+        [data-theme="light"] .dropdown-item:hover { color: #FFFFFF; }
+
+        .navbar-right-desktop { display: flex; align-items: center; gap: 0.6rem; }
+        .icon-btn { width: 2.4rem; height: 2.4rem; background-color: rgba(168,85,247,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-heading); border: 1px solid var(--neon-purple); cursor: poPoppins; transition: 0.2s; }
+        .icon-btn:hover { background-color: var(--neon-purple); color: #0A0A0A; transform: scale(1.05); }
+        .login-btn { background-color: transparent; color: var(--text-main); border: 1px solid var(--neon-purple); padding: 0.5rem 1.2rem; border-radius: 40px; font-weight: 600; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; transition: 0.2s; }
+        [data-theme="light"] .login-btn { color: var(--text-main); }
+        .login-btn:hover { background-color: var(--neon-purple); transform: translateY(-2px); color: #0A0A0A; }
+
+        .mobile-menu-btn { display: none; color: var(--text-heading); font-size: 1.5rem; background: transparent; border: none; cursor: poPoppins; }
+        @media (min-width: 1200px) { 
+            .desktop-nav { display: flex; } 
+            .navbar-right-desktop { display: flex; } 
+            .mobile-menu-btn { display: none; }
+        }
+        @media (max-width: 1199px) { 
+            .desktop-nav { display: none; } 
+            .navbar-right-desktop { display: none; } 
+            .mobile-menu-btn { display: block; }
+        }
+
+        .mobile-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-primary); z-index: 9999; overflow-y: auto; transform: translateX(-100%); transition: transform 0.3s ease; }
+        [dir="rtl"] .mobile-menu { transform: translateX(100%); }
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; border-bottom: 1px solid var(--neon-purple); }
+        .mobile-menu-close { background: none; border: none; font-size: 2rem; color: var(--text-heading); cursor: poPoppins; }
+        .mobile-menu-items { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+        .mobile-nav-item { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 0; color: var(--text-main); font-size: 1.1rem; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--border-dim); }
+        .mobile-nav-item:hover { color: var(--neon-purple); padding-left: 0.5rem; }
+        .mobile-dropdown { width: 100%; }
+        .mobile-dropdown-btn { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 0; color: var(--text-main); font-size: 1.1rem; font-weight: 500; background: none; border: none; width: 100%; text-align: left; cursor: poPoppins; border-bottom: 1px solid var(--border-dim); }
+        .mobile-dropdown-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: var(--bg-secondary); border-radius: 16px; margin-top: 0.5rem; }
+        .mobile-dropdown-content.active { max-height: 300px; padding: 0.5rem 0; }
+        .mobile-dropdown-content a { display: block; padding: 0.7rem 1.5rem; color: var(--text-main); text-decoration: none; }
+        .mobile-dropdown-content a:hover { color: var(--neon-purple); padding-left: 2rem; }
+        .mobile-action-buttons { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+        .mobile-action-btn { display: inline-flex; align-items: center; gap: 0.8rem; padding: 0.9rem 0; color: var(--text-main); font-size: 1rem; font-weight: 500; background: none; border: none; border-bottom: 1px solid var(--border-dim); cursor: poPoppins; width: 100%; text-align: left; text-decoration: none; }
+        .mobile-action-btn:hover { color: var(--neon-purple); padding-left: 0.5rem; }
+
+        /* ROOM PAGE SPECIFIC */
+        .page-header {
+            padding: 9rem 0 3rem;
+            background: linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 100%), url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+            border-bottom: 1px solid var(--border-dim);
+            text-align: center;
+        }
+        .page-title { font-size: 3rem; margin-bottom: 1rem; }
+        .page-subtitle { color: var(--footer-text); max-width: 700px; font-size: 1.1rem; margin: 0 auto; }
+        
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+        @media (min-width: 768px) {
+            .rooms-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1200px) {
+            .rooms-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        .room-card {
+            background: var(--card-bg);
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 1px solid var(--border-dim);
+            transition: all 0.3s ease;
+        }
+        .room-card:hover { transform: translateY(-8px); border-color: var(--neon-purple); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.3); }
+        .room-img { width: 100%; height: 240px; object-fit: cover; border-bottom: 1px solid var(--neon-purple); }
+        .room-content { padding: 1.5rem; }
+        .room-title { font-size: 1.6rem; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.5rem; }
+        .room-price { color: var(--neon-purple); font-weight: 700; font-size: 1.1rem; }
+        .room-features { display: flex; gap: 0.8rem; flex-wrap: wrap; margin: 1rem 0; }
+        .feature-badge { background: rgba(168,85,247,0.15); border-radius: 40px; padding: 0.3rem 0.8rem; font-size: 0.7rem; font-weight: 600; color: var(--neon-purple); }
+        .room-desc { color: var(--footer-text); margin-bottom: 1.2rem; line-height: 1.5; }
+        .room-btn { background: transparent; border: 1.5px solid var(--neon-purple); color: var(--text-main); padding: 0.6rem 1.2rem; border-radius: 40px; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: 0.2s; text-decoration: none; }
+        .room-btn:hover { background: var(--neon-purple); color: #0A0A0A; transform: scale(1.02); }
+        [data-theme="light"] .room-btn:hover { color: #FFFFFF; }
+
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-badge { color: var(--neon-purple); letter-spacing: 2px; text-transform: uppercase; font-weight: 700; font-size: 0.8rem; display: block; margin-bottom: 0.5rem; }
+        .section-title { font-size: 2.5rem; margin-bottom: 1rem; }
+        
+        .amenities-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .amenity-item { text-align: center; padding: 2rem 1rem; background: var(--bg-secondary); border-radius: 1.5rem; border: 1px solid var(--border-dim); transition: 0.2s; }
+        .amenity-icon { font-size: 2.5rem; color: var(--neon-purple); margin-bottom: 1rem; }
+        .amenity-item h3 { margin-bottom: 0.5rem; }
+        .amenity-item p { color: var(--footer-text); }
+        
+        .comparison-table { overflow-x: auto; margin: 3rem 0; background: var(--card-bg); border-radius: 1.5rem; border: 1px solid var(--border-dim); padding: 1rem; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border-dim); }
+        th { color: var(--neon-purple); font-weight: 700; }
+        tr:last-child td { border-bottom: none; }
+        td i.fa-check { color: var(--neon-purple); }
+        
+        .cta-room-banner { background: linear-gradient(135deg, rgba(168,85,247,0.2) 0%, rgba(0,0,0,0.8) 100%), url('https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?q=80&w=2070&auto=format') center/cover; border-radius: 2rem; padding: 4rem 2rem; text-align: center; margin: 3rem 0; border: 1px solid var(--neon-purple); }
+        .cta-room-banner h2 { font-size: 2rem; margin-bottom: 1rem; color: white; text-shadow: 0 2px 5px black; }
+        .cta-room-banner p { color: #f0f0f0; max-width: 600px; margin: 0 auto 1.5rem; }
+
+        /* FOOTER */
+        .footer { background-color: var(--bg-black); color: var(--text-white); padding: 4rem 0 2rem; position: relative; border-top: 1px solid var(--neon-purple); margin-top: 2rem; }
+        .footer-main { display: grid; gap: 3rem; grid-template-columns: 1fr; margin-bottom: 3rem; }
+        @media (min-width: 768px) { .footer-main { grid-template-columns: 2fr 1fr 1fr 2fr; } }
+        .footer-tagline { color: var(--footer-text); font-size: 0.875rem; max-width: 300px; margin-top: 1rem; }
+        .footer-social { display: flex; gap: 1rem; margin-top: 1.2rem; }
+        .footer-social-link { width: 2.5rem; height: 2.5rem; background-color: rgba(168,85,247,0.15); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--neon-purple); transition: 0.2s; text-decoration: none; border: 1px solid var(--neon-purple); }
+        .footer-social-link:hover { background-color: var(--neon-purple); color: #0A0A0A; transform: translateY(-3px); }
+        .footer-heading { font-size: 1.125rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--neon-purple); }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: var(--footer-text); text-decoration: none; transition: 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; }
+        .footer-links a:hover { color: var(--neon-purple); transform: translateX(5px); }
+        .footer-input { width: 100%; padding: 0.875rem; border-radius: 9999px; background: var(--bg-secondary); border: 1px solid var(--neon-purple); color: var(--text-main); }
+        .footer-btn { width: 100%; background-color: var(--neon-purple); color: #0A0A0A; padding: 0.875rem; border-radius: 9999px; font-weight: bold; border: none; cursor: poPoppins; margin-top: 0.5rem; transition: 0.2s; }
+        [data-theme="light"] .footer-btn { color: #FFFFFF; }
+        .footer-btn:hover { background-color: #c084fc; transform: translateY(-2px); }
+        .footer-bottom { border-top: 1px solid rgba(168,85,247,0.3); padding-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+        @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
+        .copyright, .footer-bottom-links a { color: var(--footer-text); font-size: 0.875rem; text-decoration: none; }
+        .footer-bottom-links a:hover { color: var(--neon-purple); }
+        #scroll-top { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 3rem; height: 3rem; background-color: var(--neon-purple); color: #0A0A0A; border-radius: 50%; border: none; cursor: poPoppins; z-index: 100; display: none; }
+        #scroll-top:hover { background-color: #c084fc; transform: translateY(-3px); }
+    </style>
+</head>
+<body>
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo"><div class="logo-icon"><i class="fas fa-microphone-alt"></i></div><div class="logo-text-wrapper"><div class="logo-text">ECHO<span> Karaoke</span></div><span class="logo-tagline">sing loud • party private</span></div></a>
+        <div class="desktop-nav">
+            <div class="dropdown"><div class="nav-link">Home <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></div><div class="dropdown-menu"><a href="index.html" class="dropdown-item">HOME 1</a><a href="home2.html" class="dropdown-item">HOME 2</a></div></div>
+            <a href="room.html" class="nav-link active">Rooms</a>
+            <a href="event.html" class="nav-link">Events</a>
+            <a href="package.html" class="nav-link">Packages</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <div class="dropdown"><div class="nav-link">Dashboard <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></div><div class="dropdown-menu"><a href="admin.html" class="dropdown-item">Admin Dashboard</a><a href="client.html" class="dropdown-item">Client Dashboard</a></div></div>
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-sun"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-exchange-alt"></i></button>
+            <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Login</a>
+            <a href="register.html" class="login-btn"><i class="fas fa-user-plus"></i> Register</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+<div id="mobile-menu" class="mobile-menu"><div class="mobile-menu-header"><a href="index.html" class="logo"><div class="logo-icon"><i class="fas fa-microphone-alt"></i></div><div class="logo-text-wrapper"><div class="logo-text">ECHO<span> Karaoke</span></div></div></a><button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button></div><div class="mobile-menu-items"><div class="mobile-dropdown"><button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-dropdown')">Home <i class="fas fa-chevron-down"></i></button><div id="home-dropdown" class="mobile-dropdown-content"><a href="index.html">HOME 1</a><a href="home2.html">HOME 2</a></div></div><a href="room.html" class="mobile-nav-item">Rooms</a><a href="event.html" class="mobile-nav-item">Events</a><a href="package.html" class="mobile-nav-item">Packages</a><a href="gallery.html" class="mobile-nav-item">Gallery</a><a href="contact.html" class="mobile-nav-item">Contact</a><div class="mobile-dropdown"><button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('dashboard-dropdown')">Dashboard <i class="fas fa-chevron-down"></i></button><div id="dashboard-dropdown" class="mobile-dropdown-content"><a href="admin.html">Admin Dashboard</a><a href="client.html">Client Dashboard</a></div></div><div class="mobile-action-buttons"><a href="login.html" class="mobile-action-btn"><i class="fas fa-sign-in-alt"></i> Login</a><a href="register.html" class="mobile-action-btn"><i class="fas fa-user-plus"></i> Register</a><button class="mobile-action-btn" id="mobile-rtl-toggle"><i class="fas fa-exchange-alt"></i> RTL Mode</button><button class="mobile-action-btn" id="mobile-theme-toggle"><i class="fas fa-circle-half-stroke"></i> Dark/Light Mode</button></div></div></div>
+
+<section class="page-header"><div class="container"><h1 class="page-title"><span style="color:var(--neon-purple);">Our Signature Rooms</span></h1><p class="page-subtitle">Discover 6 uniquely designed private karaoke suites — each with pro sound, LED mood lighting, and immersive style. Perfect for any occasion.</p></div></section>
+
+<div class="container">
+    <!-- SECTION 1: ROOM GRID (6 CARDS) -->
+    <div class="rooms-grid">
+        <div class="room-card"><img class="room-img" src="https://images.unsplash.com/photo-1575444758702-4a6b9222336e?w=600" alt="Neon Suite"><div class="room-content"><div class="room-title"><span>Neon Mirage</span><span class="room-price">$89/hr</span></div><div class="room-features"><span class="feature-badge"><i class="fas fa-users"></i> 6-10 ppl</span><span class="feature-badge"><i class="fas fa-tv"></i> 4K screens</span></div><p class="room-desc">Futuristic neon strips, fog-ready stage, and a massive song library. Ideal for influencers & small groups.</p><a href="#" class="room-btn">Book Now <i class="fas fa-arrow-right"></i></a></div></div>
+        <div class="room-card"><img class="room-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600" alt="Retro 80s"><div class="room-content"><div class="room-title"><span>Retro Rewind</span><span class="room-price">$69/hr</span></div><div class="room-features"><span class="feature-badge"><i class="fas fa-users"></i> 4-8 ppl</span><span class="feature-badge"><i class="fas fa-record-vinyl"></i> Vinyl decor</span></div><p class="room-desc">Step back in time with disco balls, vintage mics, and classic 80s playlist wall.</p><a href="#" class="room-btn">Book Now <i class="fas fa-arrow-right"></i></a></div></div>
+        <div class="room-card"><img class="room-img" src="images/h4.avif" alt="VIP Luxe"><div class="room-content"><div class="room-title"><span>Presidential Suite</span><span class="room-price">$299/hr</span></div><div class="room-features"><span class="feature-badge"><i class="fas fa-crown"></i> Up to 20</span><span class="feature-badge"><i class="fas fa-champagne-glasses"></i> Bottle service</span></div><p class="room-desc">Leather sofas, private bar, dedicated host, and premium acoustics. Ultimate luxury.</p><a href="#" class="room-btn">Book Now <i class="fas fa-arrow-right"></i></a></div></div>
+        <div class="room-card"><img class="room-img" src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=600" alt="K-pop room"><div class="room-content"><div class="room-title"><span>K-pop Arena</span><span class="room-price">$99/hr</span></div><div class="room-features"><span class="feature-badge"><i class="fas fa-microphone"></i> Dance cam</span><span class="feature-badge"><i class="fas fa-music"></i> Korean tracks</span></div><p class="room-desc">LED dance floor, motion lights, and the largest K-pop collection in town.</p><a href="#" class="room-btn">Book Now <i class="fas fa-arrow-right"></i></a></div></div>
+        <div class="room-card"><img class="room-img" src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600" alt="Intimate Duet"><div class="room-content"><div class="room-title"><span>Duet Lounge</span><span class="room-price">$49/hr</span></div><div class="room-features"><span class="feature-badge"><i class="fas fa-heart"></i> 2-4 ppl</span><span class="feature-badge"><i class="fas fa-couch"></i> Cozy booth</span></div><p class="room-desc">Perfect for date nights or close friends. Romantic lighting & curated love songs.</p><a href="#" class="room-btn">Book Now <i class="fas fa-arrow-right"></i></a></div></div>
+        <div class="room-card"><img class="room-img" src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600" alt="Party XL"><div class="room-content"><div class="room-title"><span>Megawatt Hall</span><span class="room-price">$199/hr</span></div><div class="room-features"><span class="feature-badge"><i class="fas fa-birthday-cake"></i> 25+ guests</span><span class="feature-badge"><i class="fas fa-dj"></i> DJ booth</span></div><p class="room-desc">Massive space with 2 stages, confetti cannon, and surround sound for big celebrations.</p><a href="#" class="room-btn">Book Now <i class="fas fa-arrow-right"></i></a></div></div>
+    </div>
+
+    <!-- SECTION 2: Premium Amenities Showcase -->
+    <div class="section-header"><span class="section-badge">Luxury included</span><h2 class="section-title">Every Room Features</h2></div>
+    <div class="amenities-showcase">
+        <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-headphones"></i></div><h3>Pro Audio</h3><p>JBL speakers + wireless mics with pitch correction.</p></div>
+        <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-lightbulb"></i></div><h3>Mood Lighting</h3><p>RGB LED strips, disco lights, and party modes.</p></div>
+        <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-wine-bottle"></i></div><h3>In-Room Bar</h3><p>Champagne coolers, cocktail menu & bottle service.</p></div>
+        <div class="amenity-item"><div class="amenity-icon"><i class="fas fa-cloud-music"></i></div><h3>50k+ Songs</h3><p>Multilingual library updated weekly.</p></div>
+    </div>
+
+    <!-- SECTION 3: Comparison table (room features) -->
+    <div class="section-header"><span class="section-badge">Choose Your Vibe</span><h2 class="section-title">Room Comparison</h2></div>
+    <div class="comparison-table">
+        <table>
+            <thead><tr><th>Room Type</th><th>Capacity</th><th>Best For</th><th>Sound System</th><th>Private Bar</th><th>Min Hours</th></tr></thead>
+            <tbody>
+                <tr><td>Neon Mirage</td><td>10</td><td>Parties / Influencers</td><td>360° Surround</td><td><i class="fas fa-check"></i></td><td>1.5h</td></tr>
+                <tr><td>Retro Rewind</td><td>8</td><td>80s lovers / intimate</td><td>Vintage + modern</td><td>—</td><td>1h</td></tr>
+                <tr><td>Presidential Suite</td><td>20</td><td>Corporate / VIP</td><td>Dolby Atmos</td><td><i class="fas fa-check"></i> Full</td><td>2h</td></tr>
+                <tr><td>K-pop Arena</td><td>12</td><td>Dance nights</td><td>Bass boost</td><td><i class="fas fa-check"></i></td><td>1.5h</td></tr>
+                <tr><td>Duet Lounge</td><td>4</td><td>Romantic dates</td><td>Intimate clarity</td><td>—</td><td>1h</td></tr>
+                <tr><td>Megawatt Hall</td><td>30</td><td>Large events</td><td>Stage monitor</td><td><i class="fas fa-check"></i> Premium</td><td>2h</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SECTION 4: Room experience slider / highlights (service flow) -->
+    <div class="section-header"><span class="section-badge">Beyond Singing</span><h2 class="section-title">In-Room Experiences</h2></div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2rem; margin: 2rem 0;">
+        <div style="background:var(--bg-secondary); border-radius: 1rem; padding:1.5rem; text-align:center;"><i class="fas fa-video" style="font-size:2rem; color:var(--neon-purple);"></i><h3 style="margin:0.5rem 0">Live Recording</h3><p style="color:var(--footer-text)">Capture your performance & share reels.</p></div>
+        <div style="background:var(--bg-secondary); border-radius: 1rem; padding:1.5rem; text-align:center;"><i class="fas fa-gamepad" style="font-size:2rem; color:var(--neon-purple);"></i><h3 style="margin:0.5rem 0">Game & Chill</h3><p style="color:var(--footer-text)">Retro arcade & karaoke battle mode.</p></div>
+        <div style="background:var(--bg-secondary); border-radius: 1rem; padding:1.5rem; text-align:center;"><i class="fas fa-camera" style="font-size:2rem; color:var(--neon-purple);"></i><h3 style="margin:0.5rem 0">Photo Booth</h3><p style="color:var(--footer-text)">Neon props, instant prints, digital copies.</p></div>
+        <div style="background:var(--bg-secondary); border-radius: 1rem; padding:1.5rem; text-align:center;"><i class="fas fa-wine-glass-alt" style="font-size:2rem; color:var(--neon-purple);"></i><h3 style="margin:0.5rem 0">Mixologist</h3><p style="color:var(--footer-text)">Custom cocktails delivered to your room.</p></div>
+    </div>
+
+    <!-- SECTION 5: Book a private tour / CTA -->
+    <div class="cta-room-banner"><h2>Reserve a private tour of our rooms</h2><p>Not sure which suite fits your vibe? Our hosts will guide you through each room and offer a complimentary welcome drink.</p><a href="#" class="btn-primary" style="background:white; color:#0A0A0A; text-decoration:none; display:inline-block; padding:0.8rem 2rem;"><i class="fas fa-calendar-alt"></i> Schedule a Tour</a></div>
+
+    <!-- SECTION 6: Package add-ons for rooms (bundles) -->
+    <div class="section-header"><span class="section-badge">Upgrade Your Night</span><h2 class="section-title">Room Add-ons & Packages</h2></div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; margin-bottom: 4rem;">
+        <div style="background:var(--card-bg); border-radius: 1.5rem; padding:1.5rem; border:1px solid var(--border-dim);"><i class="fas fa-champagne-glasses" style="font-size:2rem; color:var(--neon-purple);"></i><h3>Sparkle Package</h3><p>1 bottle of prosecco + fruit platter + 2 extra hours <strong>$120</strong></p><button class="room-btn" style="margin-top:0.8rem;">Add to booking</button></div>
+        <div style="background:var(--card-bg); border-radius: 1.5rem; padding:1.5rem; border:1px solid var(--border-dim);"><i class="fas fa-cake-candles" style="font-size:2rem; color:var(--neon-purple);"></i><h3>Birthday Bash</h3><p>Dessert cake, balloon decoration, confetti & song dedication <strong>$99</strong></p><button class="room-btn" style="margin-top:0.8rem;">Add to booking</button></div>
+        <div style="background:var(--card-bg); border-radius: 1.5rem; padding:1.5rem; border:1px solid var(--border-dim);"><i class="fas fa-drumstick-bite" style="font-size:2rem; color:var(--neon-purple);"></i><h3>Grazing Table</h3><p>Gourmet finger foods, cheese board, sliders, and dips <strong>$159</strong></p><button class="room-btn" style="margin-top:0.8rem;">Add to booking</button></div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container"><div class="footer-main"><div class="footer-brand"><a href="#" class="logo" style="display:flex; gap:10px;"><div class="logo-icon"><i class="fas fa-microphone-alt"></i></div><div class="logo-text-wrapper"><div class="logo-text">ECHO<span> Karaoke</span></div><span class="logo-tagline">sing loud • party private</span></div></a><p class="footer-tagline">Open 7 days • 6pm–2am. Premium private karaoke lounge in the heart of the city.</p><div class="footer-social"><a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a><a href="#" class="footer-social-link"><i class="fab fa-tiktok"></i></a><a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a></div></div><div><h3 class="footer-heading">Quick Links</h3><ul class="footer-links"><li><a href="#"><i class="fas fa-chevron-right"></i> Rooms & rates</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Events</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Gift cards</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Gallery</a></li></ul></div><div><h3 class="footer-heading">Support</h3><ul class="footer-links"><li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Safety</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li></ul></div><div class="footer-newsletter"><h3 class="footer-heading">Stay Connected</h3><p>Subscribe for exclusive offers & VIP invites.</p><form class="newsletter-form"><input type="email" placeholder="Your email address" class="footer-input"><button class="footer-btn"><i class="fas fa-paper-plane"></i> Subscribe</button></form></div></div><div class="footer-bottom"><div class="copyright">© 2026 Echo Karaoke Lounge – premium private party rooms. All rights reserved.</div><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></div></div></div>
+</footer>
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    function toggleMobileDropdown(id) { const el = document.getElementById(id); if(el) el.classList.toggle('active'); }
+    (function() {
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('desktop-theme-toggle');
+        const mobileTheme = document.getElementById('mobile-theme-toggle');
+        let theme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', theme);
+        function updateThemeIcons(t) { const icon = document.querySelector('#desktop-theme-toggle i'); if(icon) icon.className = t === 'dark' ? 'fas fa-sun' : 'fas fa-moon'; }
+        updateThemeIcons(theme);
+        function toggleThemeFunc() { let cur = html.getAttribute('data-theme'); let nw = cur === 'dark' ? 'light' : 'dark'; html.setAttribute('data-theme', nw); localStorage.setItem('theme', nw); updateThemeIcons(nw); }
+        if(themeToggle) themeToggle.addEventListener('click', toggleThemeFunc);
+        if(mobileTheme) mobileTheme.addEventListener('click', toggleThemeFunc);
+        function toggleRtl() { let dir = html.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'; html.setAttribute('dir', dir); localStorage.setItem('direction', dir); }
+        document.getElementById('desktop-rtl-toggle')?.addEventListener('click', toggleRtl);
+        document.getElementById('mobile-rtl-toggle')?.addEventListener('click', toggleRtl);
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-mobile-menu');
+        if(menuBtn) menuBtn.onclick = () => mobileMenu.classList.add('active');
+        if(closeBtn) closeBtn.onclick = () => mobileMenu.classList.remove('active');
+        mobileMenu?.addEventListener('click', (e) => { if(e.target === mobileMenu) mobileMenu.classList.remove('active'); });
+        const scrollBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none');
+        scrollBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    })();
+</script>
+</body>
+</html>
