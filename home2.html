@@ -7,7 +7,7 @@
     <title>Echo Karaoke | sing loud • party private – Home</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A855F7'%3E%3Cpath d='M12 3v1m0 16v1M9 6l-1 1m8 8l1-1M6 9H5m14 0h-1m-8 8l1 1m6-8l1-1M6 15H5m14 0h-1M4 4l2 2m12-2l-2 2m2 12l-2-2M6 18l2-2' stroke='%23A855F7' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23A855F7'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:opsz,wght@14..32,300..900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,55 +16,60 @@
         }
 
         :root {
-            --bg-primary: #0A0A0A;
-            --bg-secondary: #111111;
-            --neon-purple: #A855F7;
-            --neon-pink: #EC4899;
-            --neon-cyan: #06B6D4;
-            --text-main: #FFFFFF;
-            --text-heading: #FFFFFF;
-            --text-muted: #B0B0B0;
-            --border-dim: rgba(255, 255, 255, 0.1);
-            --card-bg: #111111;
-            --navbar-bg: #0A0A0A;
-            --heading-font: 'Montserrat', sans-serif;
+            --bg-primary: #0B0E0C;
+            --bg-secondary: #111512;
+            --neon-purple: #D4AF37;
+            --neon-pink: #F3E5AB;
+            --neon-cyan: #117864;
+            --text-main: #E0DEC8;
+            --text-heading: #F8F5E6;
+            --text-muted: #A9A48C;
+            --border-dim: transparent;
+            --card-bg: #111512;
+            --navbar-bg: #0B0E0C;
+            --heading-font: 'Playfair Display', serif;
         }
 
         [data-theme="light"] {
             --bg-primary: #FFFFFF;
-            --bg-secondary: #F8F9FA;
-            --neon-purple: #9333EA;
-            --neon-pink: #DB2777;
-            --neon-cyan: #0891B2;
-            --text-main: #212529;
-            --text-heading: #000000;
-            --text-muted: #6C757D;
+            --bg-secondary: #FDFCF6;
+            --neon-purple: #C5A028;
+            --neon-pink: #D4AF37;
+            --neon-cyan: #0E6251;
+            --text-main: #333333;
+            --text-heading: #111111;
+            --text-muted: #666666;
             --border-dim: rgba(0, 0, 0, 0.1);
-            --card-bg: #F5F5F5;
+            --card-bg: #FDFCF6;
             --navbar-bg: #FFFFFF;
         }
 
         html, body { overflow-x: hidden; width: 100%; }
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-main);
             transition: background-color 0.3s, color 0.3s;
-            line-height: 1.5;
+            line-height: 1.7;
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--heading-font);
             color: var(--text-heading);
-            font-weight: 700;
+            font-weight: 600;
             line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-weight: 500;
         }
 
         .container {
             width: 100%;
-            max-width: 1280px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
 
         /* RTL Support */
@@ -89,13 +94,18 @@
         /* ===== NAVBAR ===== */
         .navbar-container {
             background-color: var(--navbar-bg);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--neon-purple);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
             position: fixed;
-            top: 0;
-            width: 100%;
+            top: 1rem;
+            width: 95%;
+            max-width: 1400px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2rem;
             z-index: 1000;
-            padding: 0.7rem 0;
+            padding: 0.7rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
         .navbar-flex {
             display: flex;
@@ -127,7 +137,7 @@
             flex-direction: column;
             line-height: 1.2;
         }
-        .logo-text {
+        .logo-text { white-space: nowrap;
             font-size: 1.45rem;
             font-weight: 800;
             color: var(--text-heading);
@@ -204,7 +214,7 @@
         .mobile-dropdown-content a {
             display: block;
             padding: 0.8rem 1rem;
-            color: var(--text-dim);
+            color: var(--text-muted);
             text-decoration: none;
             border-bottom: 1px solid var(--border-dim);
             transition: 0.2s;
@@ -242,8 +252,8 @@
             transform: scale(1.05); 
         }
         .login-btn {
-            background-color: transparent; 
-            color: var(--text-main); 
+            background-color: var(--neon-purple); 
+            color: #0A0A0A; 
             border: 1px solid var(--neon-purple);
             padding: 0.5rem 1.2rem;
             border-radius: 40px; 
@@ -256,9 +266,9 @@
             transition: 0.2s;
         }
         .login-btn:hover { 
-            background-color: var(--neon-purple); 
+            background-color: transparent; 
             transform: translateY(-2px); 
-            color: #0A0A0A; 
+            color: var(--text-main); 
         }
         .mobile-menu-btn { 
             display: none; 
@@ -404,7 +414,7 @@
             backdrop-filter: blur(8px);
             padding: 0.4rem 1.2rem;
             border-radius: 40px;
-            color: var(--neon-purple);
+            color: white;
             font-size: 0.8rem;
             font-weight: 600;
             letter-spacing: 1px;
@@ -469,20 +479,23 @@
             color: #0A0A0A;
             transform: translateY(-3px);
         }
+        [data-theme="light"] .btn-outline-neon { color: #111; }
+        [data-theme="light"] .hero .btn-outline-neon { color: white; }
+        [data-theme="light"] .btn-outline-neon:hover { color: #FFFFFF; }
 
         /* Sections */
-        .section { padding: 5rem 0; }
+        .section { padding: 6rem 0; }
         .section-alt { background-color: var(--bg-secondary); }
-        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
         .section-badge { 
-            color: var(--neon-purple); 
+            color: var(--text-heading); 
             letter-spacing: 2px; 
             text-transform: uppercase; 
             font-weight: 700; 
             font-size: 0.8rem; 
             display: inline-block;
             margin-bottom: 0.5rem;
-            background: rgba(168,85,247,0.15);
+            background: rgba(168,85,247,0.3);
             padding: 0.3rem 1rem;
             border-radius: 40px;
         }
@@ -507,7 +520,7 @@
             border-color: var(--neon-purple);
             box-shadow: 0 20px 30px -12px rgba(168,85,247,0.3);
         }
-        .room-img { width: 100%; height: 220px; object-fit: cover; }
+        .room-img { width: 100%; height: 350px; object-fit: cover; }
         .room-info { padding: 1.5rem; }
         .room-info h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
         .room-features { display: flex; gap: 1rem; margin: 1rem 0; color: var(--text-muted); font-size: 0.8rem; }
@@ -611,7 +624,7 @@
         }
         .teaser-img {
             width: 100%;
-            height: 180px;
+            height: 250px;
             object-fit: cover;
             border-radius: 1rem;
             border: 1px solid var(--neon-purple);
@@ -716,6 +729,20 @@
 
 <!-- Section 6: Neon Gallery Teaser -->
 <section class="section section-alt"><div class="container"><div class="section-header"><span class="section-badge"><i class="fas fa-images"></i> Visual Vibe</span><h2 class="section-title">Neon Moments</h2></div><div class="gallery-teaser"><img class="teaser-img" src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400" alt="Party"><img class="teaser-img" src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400" alt="Crowd"><img class="teaser-img" src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400" alt="Stage"><img class="teaser-img" src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400" alt="Singing"></div><div style="text-align: center; margin-top: 2rem;"><a href="gallery.html" class="btn-outline-neon">View Full Gallery →</a></div></div></section>
+
+    <!-- Global Pre-Footer CTA -->
+    <section class="section" style="padding-bottom: 6rem;">
+        <div class="container">
+            <div style="background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(11,14,12,0.9) 100%), url('https://images.unsplash.com/photo-1545128485-c400e7702796?w=2000&q=80') center/cover; border-radius: 2rem; padding: 6rem 2rem; text-align: center; border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+                <h2 style="font-size: 2.8rem; margin-bottom: 1rem; color: #fff;">Ready to own the stage?</h2>
+                <p style="font-size: 1.2rem; color: #ccc; max-width: 600px; margin: 0 auto 2.5rem;">Book your private VIP room today and experience the ultimate luxury nightlife.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="room.html" class="btn-primary" style="display: inline-block; padding: 0.8rem 2.5rem; background: var(--neon-purple); color: #0B0E0C; border-radius: 9999px; text-decoration: none; font-weight: 700;"><i class="fas fa-calendar-check" style="margin-right: 0.5rem;"></i> Book a Room</a>
+                    <a href="package.html" class="btn-outline-neon" style="display: inline-block; padding: 0.8rem 2.5rem; border: 1px solid var(--neon-purple); color: var(--neon-purple); border-radius: 9999px; text-decoration: none; font-weight: 700;">View Packages</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <footer class="footer"><div class="container"><div class="footer-main"><div class="footer-brand"><a href="#" class="logo" style="display:flex; gap:10px;"><div class="logo-icon"><i class="fas fa-microphone-alt"></i></div><div class="logo-text-wrapper"><div class="logo-text">ECHO<span> Karaoke</span></div><span class="logo-tagline">sing loud • party private</span></div></a><p class="footer-tagline">Open 7 days • 6pm–2am. The ultimate neon karaoke lounge.</p><div class="footer-social"><a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a><a href="#" class="footer-social-link"><i class="fab fa-tiktok"></i></a><a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a></div></div><div><h3 class="footer-heading">Explore</h3><ul class="footer-links"><li><a href="#">Neon Rooms</a></li><li><a href="#">Events</a></li><li><a href="#">VIP Club</a></li></ul></div><div><h3 class="footer-heading">Support</h3><ul class="footer-links"><li><a href="#">FAQ</a></li><li><a href="#">Contact</a></li><li><a href="#">Careers</a></li></ul></div><div><h3 class="footer-heading">Newsletter</h3><input type="email" placeholder="Your email" class="footer-input" style="padding:0.875rem; width:100%; background:var(--bg-secondary); border-radius:9999px;"><button class="footer-btn" style="width:100%; margin-top:0.5rem;">Subscribe</button></div></div><div class="footer-bottom"><div class="copyright">© 2026 Echo Karaoke Lounge – Neon Edition.</div><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div></div></footer>
 <button id="scroll-top"><i class="fas fa-arrow-up"></i></button>

@@ -7,7 +7,7 @@
     <title>Echo Karaoke | Login</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A855F7'%3E%3Cpath d='M12 3v1m0 16v1M9 6l-1 1m8 8l1-1M6 9H5m14 0h-1m-8 8l1 1m6-8l1-1M6 15H5m14 0h-1M4 4l2 2m12-2l-2 2m2 12l-2-2M6 18l2-2' stroke='%23A855F7' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23A855F7'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:opsz,wght@14..32,300..900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,32 +16,32 @@
         }
 
         :root {
-            --bg-primary: #0A0A0A;
-            --bg-secondary: #111111;
-            --neon-purple: #A855F7;
-            --text-main: #FFFFFF;
-            --text-heading: #FFFFFF;
-            --text-muted: #B0B0B0;
-            --border-dim: rgba(255, 255, 255, 0.1);
-            --card-bg: rgba(17, 17, 17, 0.95);
-            --input-bg: #1a1a1a;
-            --heading-font: 'Montserrat', sans-serif;
+            --bg-primary: #0B0E0C;
+            --bg-secondary: #111512;
+            --neon-purple: #D4AF37;
+            --text-main: #E0DEC8;
+            --text-heading: #F8F5E6;
+            --text-muted: #A9A48C;
+            --border-dim: transparent;
+            --card-bg: rgba(17, 21, 18, 0.95);
+            --input-bg: #111512;
+            --heading-font: 'Playfair Display', serif;
         }
 
         [data-theme="light"] {
             --bg-primary: #FFFFFF;
-            --bg-secondary: #F8F9FA;
-            --neon-purple: #9333EA;
-            --text-main: #212529;
-            --text-heading: #000000;
-            --text-muted: #6C757D;
+            --bg-secondary: #FDFCF6;
+            --neon-purple: #C5A028;
+            --text-main: #333333;
+            --text-heading: #111111;
+            --text-muted: #666666;
             --border-dim: rgba(0, 0, 0, 0.1);
-            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-bg: rgba(253, 252, 246, 0.95);
             --input-bg: #ffffff;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-primary);
             color: var(--text-main);
             transition: background-color 0.3s, color 0.3s;
@@ -86,7 +86,7 @@
             overflow: hidden;
         }
         [data-theme="light"] .login-wrapper {
-            background: radial-gradient(ellipse at 30% 40%, rgba(147,51,234,0.06) 0%, var(--bg-primary) 100%);
+            background: linear-gradient(135deg, rgba(250,249,246,0.9) 0%, rgba(250,249,246,0.7) 100%), url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
         }
 
         /* Top Bar - NO WHITE NAV BAR, just clean dark/transparent */
@@ -133,7 +133,7 @@
             flex-direction: column;
             line-height: 1.2;
         }
-        .logo-text {
+        .logo-text { white-space: nowrap;
             font-size: 1.45rem;
             font-weight: 800;
             color: var(--text-heading);
@@ -453,6 +453,8 @@
                 transform: translateY(0);
             }
         }
+        h1, h2, h3, h4, h5, h6 { font-weight: 600 !important; }
+        p { font-weight: 500 !important; }
     </style>
 </head>
 <body>

@@ -8,8 +8,8 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A855F7'%3E%3Cpath d='M12 3v1m0 16v1M9 6l-1 1m8 8l1-1M6 9H5m14 0h-1m-8 8l1 1m6-8l1-1M6 15H5m14 0h-1M4 4l2 2m12-2l-2 2m2 12l-2-2M6 18l2-2' stroke='%23A855F7' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23A855F7'/%3E%3C/svg%3E">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts: Poppins + Montserrat -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:opsz,wght@14..32,300..900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Playfair Display + Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -18,57 +18,62 @@
         }
 
         :root {
-            --bg-black: #0A0A0A;
-            --text-white: #FFFFFF;
-            --neon-purple: #A855F7;
-            --border-dim: rgba(255, 255, 255, 0.12);
-            --card-bg: #111111;
-            --heading-font: 'Montserrat', sans-serif;
-            --navbar-bg: #0A0A0A;
-            --bg-primary: #0A0A0A;
-            --bg-secondary: #111111;
-            --text-main: #FFFFFF;
-            --text-heading: #FFFFFF;
-            --footer-text: #B0B0B0;
-            --input-bg: #1a1a1a;
+            --bg-black: #0B0E0C;
+            --text-white: #F8F5E6;
+            --neon-purple: #D4AF37;
+            --border-dim: transparent;
+            --card-bg: #111512;
+            --heading-font: 'Playfair Display', serif;
+            --navbar-bg: #0B0E0C;
+            --bg-primary: #0B0E0C;
+            --bg-secondary: #111512;
+            --text-main: #E0DEC8;
+            --text-heading: #F8F5E6;
+            --footer-text: #A9A48C;
+            --input-bg: #111512;
         }
 
         [data-theme="light"] {
             --bg-black: #FFFFFF;
-            --text-white: #111111;
-            --neon-purple: #9333EA;
+            --text-white: #0B0E0C;
+            --neon-purple: #C5A028;
             --border-dim: rgba(0, 0, 0, 0.1);
-            --card-bg: #F5F5F5;
+            --card-bg: #FDFCF6;
             --navbar-bg: #FFFFFF;
             --bg-primary: #FFFFFF;
-            --bg-secondary: #F8F9FA;
-            --text-main: #212529;
-            --text-heading: #000000;
-            --footer-text: #6C757D;
+            --bg-secondary: #FDFCF6;
+            --text-main: #333333;
+            --text-heading: #111111;
+            --footer-text: #666666;
             --input-bg: #ffffff;
         }
 
         html, body { overflow-x: hidden; width: 100%; }
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-main);
             transition: background-color 0.3s, color 0.3s;
-            line-height: 1.5;
+            line-height: 1.7;
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--heading-font);
             color: var(--text-heading);
-            font-weight: 700;
+            font-weight: 600;
             line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-weight: 500;
         }
 
         .container {
             width: 100%;
-            max-width: 1280px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
 
         [dir="rtl"] {
@@ -95,13 +100,18 @@
         /* ===== NAVBAR ===== */
         .navbar-container {
             background-color: var(--navbar-bg);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--neon-purple);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
             position: fixed;
-            top: 0;
-            width: 100%;
+            top: 1rem;
+            width: 95%;
+            max-width: 1400px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2rem;
             z-index: 1000;
-            padding: 0.7rem 0;
+            padding: 0.7rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
         .navbar-flex {
             display: flex;
@@ -133,7 +143,7 @@
             flex-direction: column;
             line-height: 1.2;
         }
-        .logo-text {
+        .logo-text { white-space: nowrap;
             font-size: 1.45rem;
             font-weight: 800;
             color: var(--text-heading);
@@ -236,8 +246,8 @@
             transform: scale(1.05); 
         }
         .login-btn {
-            background-color: transparent; 
-            color: var(--text-main); 
+            background-color: var(--neon-purple); 
+            color: #0A0A0A; 
             border: 1px solid var(--neon-purple);
             padding: 0.5rem 1.2rem;
             border-radius: 40px; 
@@ -250,9 +260,9 @@
             transition: 0.2s;
         }
         .login-btn:hover { 
-            background-color: var(--neon-purple); 
+            background-color: transparent; 
             transform: translateY(-2px); 
-            color: #0A0A0A; 
+            color: var(--text-main); 
         }
         .mobile-menu-btn { 
             display: none; 
@@ -366,12 +376,11 @@
             background: linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 100%), url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
             margin-top: 70px;
         }
-        .hero-content { text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 0; }
-        .hero-sub { color: var(--neon-purple); letter-spacing: 2px; margin-bottom: 1rem; font-weight: 600; }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; }
-
-        /* SECTIONS */
-        .section { padding: 5rem 0; }
+        .hero-content { text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 0; position: relative; z-index: 2; }
+        .hero-sub { color: var(--neon-purple); letter-spacing: 2px; margin-bottom: 1rem; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; text-shadow: 0 2px 8px rgba(0,0,0,0.8); color: #FFFFFF; }
+        .hero p { font-size: 1.1rem; color: #FFFFFF; text-shadow: 0 2px 8px rgba(0,0,0,0.8); font-weight: 500; }
+        .section { padding: 6rem 0; }
         .section-alt { background-color: var(--bg-secondary); }
         .section-header { text-align: center; margin-bottom: 3rem; }
         .section-badge { color: var(--neon-purple); letter-spacing: 2px; text-transform: uppercase; font-weight: 700; font-size: 0.8rem; display: block; margin-bottom: 0.5rem; }
@@ -397,10 +406,11 @@
             background: var(--card-bg);
             border-radius: 1.5rem;
             padding: 1.8rem;
-            border: 1px solid var(--border-dim);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             transition: 0.2s;
         }
-        .info-card:hover { border-color: var(--neon-purple); transform: translateY(-3px); }
+        .info-card:hover { border-color: rgba(255, 255, 255, 0.1); transform: translateY(-3px); }
         .info-icon {
             width: 3.5rem;
             height: 3.5rem;
@@ -421,7 +431,8 @@
             background: var(--card-bg);
             border-radius: 1.5rem;
             padding: 2rem;
-            border: 1px solid var(--neon-purple);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             height: fit-content;
         }
         .contact-form {
@@ -508,18 +519,22 @@
 
         /* FAQ SECTION */
         .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .faq-item {
             background: var(--card-bg);
             border-radius: 1rem;
             padding: 1.5rem;
             border: 1px solid var(--border-dim);
-            cursor: poPoppins;
+            cursor: pointer;
             transition: 0.2s;
         }
+        .hidden-faq { display: none; }
+        .view-more-container { text-align: center; margin-top: 2rem; }
         .faq-item:hover { border-color: var(--neon-purple); }
         .faq-question {
             display: flex;
@@ -595,12 +610,12 @@
         .footer-links a { color: var(--footer-text); text-decoration: none; transition: 0.2s; }
         .footer-links a:hover { color: var(--neon-purple); transform: translateX(5px); display: inline-block; }
         .footer-input { width: 100%; padding: 0.875rem; border-radius: 9999px; background: var(--bg-secondary); border: 1px solid var(--neon-purple); color: var(--text-main); }
-        .footer-btn { width: 100%; background-color: var(--neon-purple); color: #0A0A0A; padding: 0.875rem; border-radius: 9999px; font-weight: bold; border: none; cursor: poPoppins; margin-top: 0.5rem; }
+        .footer-btn { width: 100%; background-color: var(--neon-purple); color: #0A0A0A; padding: 0.875rem; border-radius: 9999px; font-weight: bold; border: none; cursor: pointer; margin-top: 0.5rem; }
         .footer-bottom { border-top: 1px solid rgba(168,85,247,0.3); padding-top: 2rem; display: flex; justify-content: space-between; flex-wrap: wrap; text-align: center; }
         #scroll-top {
             position: fixed; bottom: 1.5rem; right: 1.5rem; width: 3rem; height: 3rem;
             background-color: var(--neon-purple); color: #0A0A0A; border-radius: 50%;
-            border: none; cursor: poPoppins; z-index: 100; display: none;
+            border: none; cursor: pointer; z-index: 100; display: none;
         }
     </style>
 </head>
@@ -640,16 +655,30 @@
 <section class="section section-alt"><div class="container"><div class="section-header"><span class="section-badge">Find Us</span><h2 class="section-title">Our Location</h2></div><div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316bb4e7d9%3A0xc2f4e7f0c9f9e3b!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1612345678901!5m2!1sen!2sus" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div><p style="text-align: center; margin-top: 1.5rem; color: var(--footer-text);"><i class="fas fa-parking"></i> Free parking available • Subway: Neon Station (Exit 4)</p></div></section>
 
 <!-- Section 3: FAQ Accordion -->
-<section class="section"><div class="container"><div class="section-header"><span class="section-badge">Got Questions?</span><h2 class="section-title">Frequently Asked</h2></div><div class="faq-grid"><div class="faq-item"><div class="faq-question">How do I book a room? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">You can book online via our Rooms page, call us, or use the contact form. We recommend booking at least 3 days in advance for weekends.</div></div><div class="faq-item"><div class="faq-question">What’s the cancellation policy? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Free cancellation up to 24 hours before your booking. Late cancellations may incur a 50% fee.</div></div><div class="faq-item"><div class="faq-question">Do you offer food and drinks? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes! Full bar, signature cocktails, bottle service, and gourmet snacks. Outside food is not allowed.</div></div><div class="faq-item"><div class="faq-question">Can I bring decorations for a party? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Absolutely! We allow balloons, banners, and cake. Let us know in advance so we can assist.</div></div><div class="faq-item"><div class="faq-question">Is there an age restriction? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">18+ after 8PM. Family-friendly hours on Sundays 5PM-8PM.</div></div><div class="faq-item"><div class="faq-question">Do you have private parking? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes, a secured parking garage with validation for guests.</div></div></div></div></section>
+<section class="section"><div class="container"><div class="section-header"><span class="section-badge">Got Questions?</span><h2 class="section-title">Frequently Asked</h2></div><div class="faq-grid"><div class="faq-item"><div class="faq-question">How do I book a room? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">You can book online via our Rooms page, call us, or use the contact form. We recommend booking at least 3 days in advance for weekends.</div></div><div class="faq-item"><div class="faq-question">What’s the cancellation policy? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Free cancellation up to 24 hours before your booking. Late cancellations may incur a 50% fee.</div></div><div class="faq-item"><div class="faq-question">Do you offer food and drinks? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes! Full bar, signature cocktails, bottle service, and gourmet snacks. Outside food is not allowed.</div></div><div class="faq-item"><div class="faq-question">Can I bring decorations for a party? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Absolutely! We allow balloons, banners, and cake. Let us know in advance so we can assist.</div></div><div class="faq-item"><div class="faq-question">Is there an age restriction? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">18+ after 8PM. Family-friendly hours on Sundays 5PM-8PM.</div></div><div class="faq-item hidden-faq"><div class="faq-question">Do you have private parking? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes, a secured parking garage with validation for guests.</div></div><div class="faq-item hidden-faq"><div class="faq-question">Can I bring my own alcohol? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Outside alcohol is strictly prohibited. We offer a full premium bar and bottle service.</div></div></div><div class="view-more-container"><button id="viewMoreBtn" class="btn-outline-neon" style="padding: 0.8rem 2.5rem; border-radius: 9999px; font-weight: bold; cursor: pointer; border: 1px solid var(--neon-purple); color: var(--neon-purple); background: transparent;">View More FAQs</button></div></div></section>
 
-<!-- Section 4: Business / Partnerships -->
+<!-- Section 4: Partnership Opportunities -->
 <section class="section section-alt"><div class="container"><div class="section-header"><span class="section-badge">Collaborate</span><h2 class="section-title">Partnership Opportunities</h2></div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;"><div class="info-card" style="text-align: center;"><i class="fas fa-birthday-cake" style="font-size: 2.5rem; color: var(--neon-purple); margin-bottom: 1rem;"></i><h3>Host Your Event</h3><p>Corporate parties, birthdays, weddings — we customize everything.</p><a href="#" style="color: var(--neon-purple); text-decoration: none;">Inquire →</a></div><div class="info-card" style="text-align: center;"><i class="fas fa-handshake" style="font-size: 2.5rem; color: var(--neon-purple); margin-bottom: 1rem;"></i><h3>Brand Collaborations</h3><p>Sponsorships, influencer nights, product launches.</p><a href="#" style="color: var(--neon-purple); text-decoration: none;">Partner with us →</a></div><div class="info-card" style="text-align: center;"><i class="fas fa-chalkboard-user" style="font-size: 2.5rem; color: var(--neon-purple); margin-bottom: 1rem;"></i><h3>Karaoke Hosts</h3><p>Join our team as an MC or event coordinator can assist.</p><a href="#" style="color: var(--neon-purple); text-decoration: none;">Careers →</a></div></div></div></section>
 
 <!-- Section 5: Social Media Connect -->
 <section class="section"><div class="container"><div class="section-header"><span class="section-badge">@echokaraoke</span><h2 class="section-title">Follow Our Journey</h2></div><div class="social-links-grid"><a href="#" class="social-link-card"><i class="fab fa-instagram"></i><span>Instagram</span></a><a href="#" class="social-link-card"><i class="fab fa-tiktok"></i><span>TikTok</span></a><a href="#" class="social-link-card"><i class="fab fa-facebook-f"></i><span>Facebook</span></a><a href="#" class="social-link-card"><i class="fab fa-x-twitter"></i><span>X (Twitter)</span></a><a href="#" class="social-link-card"><i class="fab fa-youtube"></i><span>YouTube</span></a></div><p style="text-align: center; margin-top: 2rem; color: var(--footer-text);">Tag us in your posts for a chance to be featured on our gallery!</p></div></section>
 
 <!-- Section 6: Emergency/Support Hotline Banner -->
-<section class="section section-alt"><div class="container"><div style="background: linear-gradient(135deg, rgba(168,85,247,0.2), var(--card-bg)); border-radius: 2rem; padding: 3rem; text-align: center; border: 1px solid var(--neon-purple);"><i class="fas fa-headset" style="font-size: 3rem; color: var(--neon-purple); margin-bottom: 1rem;"></i><h2 style="margin-bottom: 0.5rem;">24/7 Guest Support</h2><p style="margin-bottom: 1rem;">Need immediate assistance? Our concierge team is always ready.</p><a href="tel:+15551234567" class="btn-primary" style="background: var(--neon-purple); color: #0A0A0A; padding: 0.8rem 2rem; border-radius: 40px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; max-width: 100%; font-weight: 700; transition: 0.2s;"><i class="fas fa-phone"></i> <span>Call Now: +1 (555) 123-4567</span></a></div></div></section>
+<section class="section section-alt"><div class="container"><div style="background: linear-gradient(135deg, rgba(168,85,247,0.2), var(--card-bg)); border-radius: 2rem; padding: 3rem; text-align: center; border: 1px solid var(--neon-purple);"><i class="fas fa-phone-volume" style="font-size: 3rem; color: var(--neon-purple); margin-bottom: 1rem;"></i><h2 style="margin-bottom: 0.5rem;">24/7 Guest Support</h2><p style="margin-bottom: 1rem;">Need immediate assistance? Our concierge team is always ready.</p><a href="tel:+15551234567" class="btn-primary" style="background: var(--neon-purple); color: #0A0A0A; padding: 0.8rem 2rem; border-radius: 40px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; max-width: 100%; font-weight: 700; transition: 0.2s;"><i class="fas fa-phone-alt"></i> <span>Call Now: +1 (555) 123-4567</span></a></div></div></section>
+
+    <!-- Global Pre-Footer CTA -->
+    <section class="section" style="padding-bottom: 6rem;">
+        <div class="container">
+            <div style="background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(11,14,12,0.9) 100%), url('https://images.unsplash.com/photo-1545128485-c400e7702796?w=2000&q=80') center/cover; border-radius: 2rem; padding: 6rem 2rem; text-align: center; border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+                <h2 style="font-size: 2.8rem; margin-bottom: 1rem; color: #fff;">Ready to own the stage?</h2>
+                <p style="font-size: 1.2rem; color: #ccc; max-width: 600px; margin: 0 auto 2.5rem;">Book your private VIP room today and experience the ultimate luxury nightlife.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="room.html" class="btn-primary" style="display: inline-block; padding: 0.8rem 2.5rem; background: var(--neon-purple); color: #0B0E0C; border-radius: 9999px; text-decoration: none; font-weight: 700;"><i class="fas fa-calendar-check" style="margin-right: 0.5rem;"></i> Book a Room</a>
+                    <a href="package.html" class="btn-outline-neon" style="display: inline-block; padding: 0.8rem 2.5rem; border: 1px solid var(--neon-purple); color: var(--neon-purple); border-radius: 9999px; text-decoration: none; font-weight: 700;">View Packages</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <footer class="footer"><div class="container"><div class="footer-main"><div class="footer-brand"><a href="#" class="logo" style="display:flex; gap:10px;"><div class="logo-icon"><i class="fas fa-microphone-alt"></i></div><div class="logo-text-wrapper"><div class="logo-text">ECHO<span> Karaoke</span></div><span class="logo-tagline">sing loud • party private</span></div></a><p class="footer-tagline">Open 7 days • 6pm–2am. Premium private karaoke lounge in the heart of the city.</p><div class="footer-social"><a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a><a href="#" class="footer-social-link"><i class="fab fa-tiktok"></i></a><a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a></div></div><div><h3 class="footer-heading">Quick Links</h3><ul class="footer-links"><li><a href="#">Rooms & rates</a></li><li><a href="#">Events</a></li><li><a href="#">Gift cards</a></li><li><a href="#">Gallery</a></li></ul></div><div><h3 class="footer-heading">Support</h3><ul class="footer-links"><li><a href="#">FAQ</a></li><li><a href="#">Contact</a></li><li><a href="#">Safety</a></li><li><a href="#">Careers</a></li></ul></div><div><h3 class="footer-heading">Stay Connected</h3><p>Subscribe for exclusive offers.</p><input type="email" placeholder="Your email address" class="footer-input"><button class="footer-btn"><i class="fas fa-paper-plane"></i> Subscribe</button></div></div><div class="footer-bottom"><div class="copyright">© 2026 Echo Karaoke Lounge – premium contact & support.</div><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></div></div></div></footer>
 <button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
@@ -688,14 +717,28 @@
         window.addEventListener('scroll', () => scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none');
         scrollBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
         
-        const contactForm = document.getElementById('contactForm');
-        const successMsg = document.getElementById('formSuccess');
-        if(contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                successMsg.style.display = 'block';
-                contactForm.reset();
-                setTimeout(() => { successMsg.style.display = 'none'; }, 3000);
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.submit-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                document.getElementById('formSuccess').style.display = 'block';
+                this.reset();
+                setTimeout(() => { document.getElementById('formSuccess').style.display = 'none'; }, 5000);
+            }, 1500);
+        });
+
+        // View More FAQs
+        const viewMoreBtn = document.getElementById('viewMoreBtn');
+        if (viewMoreBtn) {
+            viewMoreBtn.addEventListener('click', () => {
+                document.querySelectorAll('.hidden-faq').forEach(item => {
+                    item.style.display = 'block';
+                    setTimeout(() => item.classList.remove('hidden-faq'), 10);
+                });
+                viewMoreBtn.style.display = 'none';
             });
         }
     })();

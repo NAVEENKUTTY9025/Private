@@ -8,8 +8,8 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A855F7'%3E%3Cpath d='M12 3v1m0 16v1M9 6l-1 1m8 8l1-1M6 9H5m14 0h-1m-8 8l1 1m6-8l1-1M6 15H5m14 0h-1M4 4l2 2m12-2l-2 2m2 12l-2-2M6 18l2-2' stroke='%23A855F7' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23A855F7'/%3E%3C/svg%3E">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts: Poppins + Montserrat -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:opsz,wght@14..32,300..900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Playfair Display + Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,35 +17,35 @@
             box-sizing: border-box;
         }
 
-        /* COLOR THEME: Black #0A0A0A, White #FFFFFF, Neon Purple #A855F7 - NO GLOW */
+        /* COLOR THEME: Emerald Green / Burgundy, Gold, Warm White */
         :root {
-            --bg-black: #0A0A0A;
-            --text-white: #FFFFFF;
-            --neon-purple: #A855F7;
-            --border-dim: rgba(255, 255, 255, 0.12);
-            --card-bg: #111111;
-            --heading-font: 'Montserrat', sans-serif;
-            --navbar-bg: #0A0A0A;
-            --bg-primary: #0A0A0A;
-            --bg-secondary: #111111;
-            --text-main: #FFFFFF;
-            --text-heading: #FFFFFF;
-            --footer-text: #B0B0B0;
+            --bg-black: #0B0E0C;
+            --text-white: #F8F5E6;
+            --neon-purple: #D4AF37;
+            --border-dim: transparent;
+            --card-bg: #111512;
+            --heading-font: 'Playfair Display', serif;
+            --navbar-bg: #0B0E0C;
+            --bg-primary: #0B0E0C;
+            --bg-secondary: #111512;
+            --text-main: #E0DEC8;
+            --text-heading: #F8F5E6;
+            --footer-text: #A9A48C;
         }
 
-        /* LIGHT MODE - clean white background with dark text */
+        /* LIGHT MODE */
         [data-theme="light"] {
             --bg-black: #FFFFFF;
-            --text-white: #111111;
-            --neon-purple: #9333EA;
+            --text-white: #0B0E0C;
+            --neon-purple: #C5A028;
             --border-dim: rgba(0, 0, 0, 0.1);
-            --card-bg: #F5F5F5;
+            --card-bg: #FDFCF6;
             --navbar-bg: #FFFFFF;
             --bg-primary: #FFFFFF;
-            --bg-secondary: #F8F9FA;
-            --text-main: #212529;
-            --text-heading: #000000;
-            --footer-text: #6C757D;
+            --bg-secondary: #FDFCF6;
+            --text-main: #333333;
+            --text-heading: #111111;
+            --footer-text: #666666;
         }
 
         html, body {
@@ -55,25 +55,30 @@
         html { scroll-behavior: smooth; }
         
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-main);
             transition: background-color 0.3s, color 0.3s;
-            line-height: 1.5;
+            line-height: 1.7;
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--heading-font);
             color: var(--text-heading);
-            font-weight: 700;
+            font-weight: 600;
             line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-weight: 500;
         }
 
         .container {
             width: 100%;
-            max-width: 1280px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
 
         /* RTL Support */
@@ -107,13 +112,18 @@
         /* ===== NAVBAR - CONSISTENT FOR DESKTOP & MOBILE ===== */
         .navbar-container {
             background-color: var(--navbar-bg);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--neon-purple);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
             position: fixed;
-            top: 0;
-            width: 100%;
+            top: 1rem;
+            width: 95%;
+            max-width: 1400px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2rem;
             z-index: 1000;
-            padding: 0.7rem 0;
+            padding: 0.7rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
         .navbar-flex {
             display: flex;
@@ -145,7 +155,7 @@
             flex-direction: column;
             line-height: 1.2;
         }
-        .logo-text {
+        .logo-text { white-space: nowrap;
             font-size: 1.45rem;
             font-weight: 800;
             color: var(--text-heading);
@@ -257,8 +267,8 @@
         [data-theme="light"] .icon-btn:hover { color: #FFFFFF; }
         
         .login-btn {
-            background-color: transparent; 
-            color: var(--text-main); 
+            background-color: var(--neon-purple); 
+            color: #0A0A0A; 
             border: 1px solid var(--neon-purple);
             padding: 0.5rem 1.2rem;
             border-radius: 40px; 
@@ -270,13 +280,13 @@
             text-decoration: none;
             transition: 0.2s;
         }
-        [data-theme="light"] .login-btn { color: var(--text-main); }
+        [data-theme="light"] .login-btn { color: #FFFFFF; }
         .login-btn:hover { 
-            background-color: var(--neon-purple); 
+            background-color: transparent; 
             transform: translateY(-2px); 
-            color: #0A0A0A; 
+            color: var(--text-main); 
         }
-        [data-theme="light"] .login-btn:hover { color: #FFFFFF; }
+        [data-theme="light"] .login-btn:hover { color: var(--text-main); }
 
         /* Mobile Menu Button - Hidden on Desktop */
         .mobile-menu-btn { 
@@ -496,7 +506,22 @@
             padding: 7rem 0 5rem;
         }
         @media (min-width: 992px) { .hero-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
-        .hero-content-left { color: var(--text-white); text-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-content-left { 
+            animation: fadeInUp 0.8s ease-out;
+            color: var(--text-white); 
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3); 
+        }
         .hero-sub {
             font-size: 0.85rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
             margin-bottom: 1.2rem; color: var(--neon-purple); background: rgba(0,0,0,0.5);
@@ -506,7 +531,13 @@
         [data-theme="light"] .hero-sub { background: rgba(255,255,255,0.7); color: var(--neon-purple); }
         .hero-title { font-size: clamp(3rem, 8vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: white; }
         [data-theme="light"] .hero-title { color: #111; }
-        .hero-title span { color: var(--neon-purple); }
+        .hero-title span { 
+            background: linear-gradient(135deg, var(--neon-purple), #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
         .hero-description { font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; color: rgba(255,255,255,0.95); max-width: 90%; }
         [data-theme="light"] .hero-description { color: #333; }
         .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
@@ -533,30 +564,98 @@
         [data-theme="light"] .btn-outline { background: rgba(255,255,255,0.8); color: #111; }
         .btn-outline:hover { background: var(--neon-purple); color: #0A0A0A; border-color: var(--neon-purple); transform: translateY(-3px); }
         [data-theme="light"] .btn-outline:hover { color: #FFFFFF; }
-        .hero-right-stats {
-            background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); border-radius: 2rem;
-            padding: 2rem 1.8rem; border: 1px solid var(--neon-purple);
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 1s ease-out;
         }
-        [data-theme="light"] .hero-right-stats { background: rgba(255,255,255,0.85); }
-        .stat-grid { display: flex; flex-direction: column; gap: 1.8rem; }
-        .stat-item { text-align: center; }
-        .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--neon-purple); font-family: var(--heading-font); }
-        .stat-label { font-size: 0.85rem; color: #f0f0f0; text-transform: uppercase; letter-spacing: 1px; margin-top: 0.4rem; }
-        [data-theme="light"] .stat-label { color: #555; }
-        .trust-badge { margin-top: 1.5rem; text-align: center; border-top: 1px solid rgba(168,85,247,0.4); padding-top: 1.5rem; font-size: 0.8rem; color: #ddd; }
-        [data-theme="light"] .trust-badge { color: #666; }
+
+        .hero-image-main {
+            width: 90%;
+            height: 500px;
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .hero-image-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image-main:hover img {
+            transform: scale(1.05);
+        }
+
+        .hero-glass-card {
+            position: absolute;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        [data-theme="light"] .hero-glass-card {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .floating-card-1 {
+            top: 10%;
+            left: -5%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-card-2 {
+            bottom: 10%;
+            right: -5%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @media (max-width: 991px) {
+            .floating-card-1 { left: 2%; transform: scale(0.85); transform-origin: left top; }
+            .floating-card-2 { right: 2%; transform: scale(0.85); transform-origin: right bottom; }
+        }
+
+        .stat-number { font-size: 2.2rem; font-weight: 800; color: var(--neon-purple); font-family: var(--heading-font); }
+        .stat-label { font-size: 0.85rem; color: #f0f0f0; text-transform: uppercase; letter-spacing: 1px; margin-top: 0.2rem; }
+        [data-theme="light"] .stat-label { color: #333; }
+
+        .trust-badge-new {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--neon-purple);
+            color: #0A0A0A;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            box-shadow: 0 10px 20px rgba(168,85,247,0.3);
+            animation: float 5s ease-in-out infinite;
+        }
 
         /* ===== SECTIONS ===== */
-        .section { padding: 5rem 0; }
+        .section { padding: 6rem 0; }
         .section-alt { background-color: var(--bg-secondary); }
-        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
         .section-badge { color: var(--neon-purple); letter-spacing: 2px; text-transform: uppercase; font-weight: 700; font-size: 0.8rem; display: block; margin-bottom: 0.5rem; }
         .section-title { font-size: 2.8rem; margin-bottom: 1rem; color: var(--text-heading); }
 
         /* Signature Rooms */
         .signature-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
         @media (min-width: 768px) { .signature-grid { grid-template-columns: repeat(2, 1fr); } }
-        .signature-feature { position: relative; border-radius: 2rem; overflow: hidden; min-height: 400px; border: 1px solid var(--neon-purple); }
+        .signature-feature { position: relative; border-radius: 1.5rem; overflow: hidden; min-height: 400px; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
         .signature-feature-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
         .signature-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); padding: 2rem; color: white; }
         .signature-list { display: flex; flex-direction: column; gap: 1.5rem; justify-content: center; }
@@ -580,14 +679,14 @@
         .workshop-row-reverse .workshop-details { direction: ltr; }
         .workshop-date-badge { background: var(--neon-purple); color: #0A0A0A; display: inline-block; padding: 0.2rem 1rem; border-radius: 30px; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.8rem; }
         [data-theme="light"] .workshop-date-badge { color: #FFFFFF; }
-        .workshop-img { width: 100%; height: 200px; object-fit: cover; border-radius: 1.5rem; border: 1px solid var(--neon-purple); }
+        .workshop-img { width: 100%; height: 350px; object-fit: cover; border-radius: 1.5rem; border: 1px solid var(--neon-purple); }
         .workshop-row h3 { color: var(--text-heading); }
         .workshop-row p { color: var(--footer-text); }
 
         /* Stories */
         .featured-story { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
         @media (min-width: 768px) { .featured-story { grid-template-columns: 1fr 1fr; } }
-        .story-featured-img { width: 100%; height: 400px; object-fit: cover; border-radius: 2rem; border: 1px solid var(--neon-purple); }
+        .story-featured-img { width: 100%; height: 500px; object-fit: cover; border-radius: 2rem; border: 1px solid var(--neon-purple); }
         .story-meta { color: var(--neon-purple); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 0.5rem; }
         .story-grid-mini { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
         .story-mini-item { display: flex; gap: 1rem; align-items: center; border-top: 1px solid var(--border-dim); padding-top: 1rem; }
@@ -606,6 +705,7 @@
         .community-cta h2 { color: var(--text-heading); }
         .community-cta p { color: var(--footer-text); }
         .benefit-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 2rem 0; }
+        .stat-item { background: rgba(168, 85, 247, 0.05); border: 1px solid rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 1.5rem; backdrop-filter: blur(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
         .benefit-badge { background: rgba(168,85,247,0.12); border: 1px solid var(--neon-purple); padding: 1rem 1.5rem; border-radius: 60px; color: var(--text-main); }
         .cta-email { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
         .cta-email input { padding: 0.9rem 1.5rem; border-radius: 60px; width: 280px; max-width: 100%; background: var(--bg-secondary); color: var(--text-main); border: 1px solid var(--neon-purple); }
@@ -789,18 +889,110 @@
     </div>
 </div>
 
-<section class="hero"><div class="hero-bg"></div><div class="container hero-grid"><div class="hero-content-left"><div class="hero-sub">SINCE 2024 · PREMIUM KARAOKE</div><h1 class="hero-title">Your stage, <span>Neon Nights</span></h1><p class="hero-description">State-of-the-art private rooms, immersive lighting, and a library of 50,000+ songs. The ultimate destination for parties, dates, and celebrations.</p><div class="hero-actions"><a href="#" class="btn-primary"><i class="fas fa-ticket-alt"></i> Reserve a room</a><a href="#" class="btn-outline"><i class="fas fa-cocktail"></i> View packages</a></div></div><div class="hero-right-stats"><div class="stat-grid"><div class="stat-item"><div class="stat-number">15+</div><div class="stat-label">Luxury Rooms</div></div><div class="stat-item"><div class="stat-number">50K+</div><div class="stat-label">Songs Library</div></div><div class="stat-item"><div class="stat-number">5★</div><div class="stat-label">Top Rated</div></div><div class="trust-badge"><i class="fas fa-wine-glass-alt"></i> Bottle service • Free Wi-Fi • 24/7 Support</div></div></div></div></section>
+<section class="hero"><div class="hero-bg"></div><div class="container hero-grid"><div class="hero-content-left"><div class="hero-sub">SINCE 2024 · PREMIUM KARAOKE</div><h1 class="hero-title">Your stage, <span>Neon Nights</span></h1><p class="hero-description">State-of-the-art private rooms, immersive lighting, and a library of 50,000+ songs. The ultimate destination for parties, dates, and celebrations.</p><div class="hero-actions"><a href="#" class="btn-primary"><i class="fas fa-ticket-alt"></i> Reserve a room</a><a href="#" class="btn-outline"><i class="fas fa-cocktail"></i> View packages</a></div></div><div class="hero-visual"><div class="hero-image-main"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1470&auto=format&fit=crop" alt="Karaoke Party"></div><div class="hero-glass-card floating-card-1"><div class="stat-number">50K+</div><div class="stat-label">Songs Available</div></div><div class="hero-glass-card floating-card-2"><div class="stat-number">5★</div><div class="stat-label">Top Rated</div></div><div class="trust-badge-new"><i class="fas fa-wine-glass-alt"></i> Premium Bottle Service</div></div></div></section>
 
-<!-- Signature Rooms Section -->
-<section style="padding:40px 20px; background:var(--bg-primary);"><div style="max-width:1100px; margin:auto;"><div style="text-align:center; margin-bottom:20px;"><span style="display:inline-block; padding:4px 12px; border-radius:20px; background:var(--neon-purple); color:#0A0A0A; font-size:10px; font-weight:bold;">Signature Rooms</span><h2 style="font-size:2rem; margin:8px 0 0; color:var(--text-heading);">Choose Your Vibe</h2></div><div style="display:grid; grid-template-columns:1.2fr 1fr; gap:10px;"><div style="position:relative; border-radius:12px; overflow:hidden; border:1px solid var(--neon-purple);"><img src="images/h3.avif" style="width:100%; height:100%; object-fit:cover;"><div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);"></div><div style="position:absolute; bottom:10px; left:10px; color:#fff;"><h3 style="margin:0;">VIP Neon Suite</h3><p style="font-size:12px;">Up to 20 guests • 4K screens</p></div></div><div style="display:grid; gap:8px;"><div style="display:flex; gap:10px; padding:10px; background:var(--card-bg); border-radius:10px; border:1px solid var(--border-dim);"><div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(168,85,247,0.15);"><i class="fas fa-star" style="color:var(--neon-purple);"></i></div><div><h3 style="margin:0; color:var(--text-heading);">Popstar Room</h3><p style="margin:2px 0; color:var(--footer-text);">Glow lights • $80–$150/hr</p><p style="font-size:13px; color:var(--text-main);">Perfect for parties with immersive LED walls.</p></div></div><div style="display:flex; gap:10px; padding:10px; background:var(--card-bg); border-radius:10px; border:1px solid var(--border-dim);"><div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(168,85,247,0.15);"><i class="fas fa-music" style="color:var(--neon-purple);"></i></div><div><h3 style="color:var(--text-heading);">Retro 80s</h3><p style="color:var(--footer-text);">Vinyl vibes • $60–$110/hr</p><p style="font-size:13px; color:var(--text-main);">Classic karaoke with vintage decor.</p></div></div><div style="display:flex;gap:10px;padding:10px;background:var(--card-bg);border-radius:10px;border:1px solid var(--border-dim);"><div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(168,85,247,0.15);"><i class="fas fa-crown" style="color:var(--neon-purple);"></i></div><div><h3 style="color:var(--text-heading);">Presidential Lounge</h3><p style="color:var(--footer-text);">Private bar • $200–$350/hr</p><p style="font-size:13px; color:var(--text-main);">Exclusive, premium sound & butler service.</p></div></div></div></div></div></section>
+        <section style="padding:40px 20px; background:var(--bg-primary);">
+            <div style="max-width:1100px; margin:auto;">
+                <div style="text-align:center; margin-bottom:20px;">
+                    <span style="display:inline-block; padding:4px 12px; border-radius:20px; background:var(--neon-purple); color:#0A0A0A; font-size:10px; font-weight:bold;">Signature Rooms</span>
+                    <h2 style="font-size:2rem; margin:8px 0 0; color:var(--text-heading);">Choose Your Vibe</h2>
+                </div>
+                <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:10px;">
+                    <div style="position:relative; border-radius:12px; overflow:hidden; border:1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1000&q=80" style="width:100%; height:100%; object-fit:cover;">
+                        <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);"></div>
+                        <div style="position:absolute; bottom:10px; left:10px; color:#fff;">
+                            <h3 style="margin:0;">VIP Neon Suite</h3>
+                            <p style="font-size:12px;">Up to 20 guests • 4K screens</p>
+                        </div>
+                    </div>
+<div style="display:grid; gap:8px;"><div style="display:flex; gap:10px; padding:10px; background:var(--card-bg); border-radius:10px; border:1px solid var(--border-dim);"><div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(168,85,247,0.15);"><i class="fas fa-star" style="color:var(--neon-purple);"></i></div><div><h3 style="margin:0; color:var(--text-heading);">Popstar Room</h3><p style="margin:2px 0; color:var(--footer-text);">Glow lights • $80–$150/hr</p><p style="font-size:13px; color:var(--text-main);">Perfect for parties with immersive LED walls.</p></div></div><div style="display:flex; gap:10px; padding:10px; background:var(--card-bg); border-radius:10px; border:1px solid var(--border-dim);"><div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(168,85,247,0.15);"><i class="fas fa-music" style="color:var(--neon-purple);"></i></div><div><h3 style="color:var(--text-heading);">Retro 80s</h3><p style="color:var(--footer-text);">Vinyl vibes • $60–$110/hr</p><p style="font-size:13px; color:var(--text-main);">Classic karaoke with vintage decor.</p></div></div><div style="display:flex;gap:10px;padding:10px;background:var(--card-bg);border-radius:10px;border:1px solid var(--border-dim);"><div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(168,85,247,0.15);"><i class="fas fa-crown" style="color:var(--neon-purple);"></i></div><div><h3 style="color:var(--text-heading);">Presidential Lounge</h3><p style="color:var(--footer-text);">Private bar • $200–$350/hr</p><p style="font-size:13px; color:var(--text-main);">Exclusive, premium sound & butler service.</p></div></div></div></div></div></section>
 
 <section class="section section-alt"><div class="container"><div class="section-header"><span class="section-badge">Premium Amenities</span><h2 class="section-title">More Than Just Singing</h2></div><div class="services-flow"><div class="service-flow-item"><div class="service-flow-icon"><i class="fas fa-champagne-glasses"></i></div><h3>Full Bar Service</h3><p>Cocktails, champagne & bottle packages</p></div><div class="service-flow-item"><div class="service-flow-icon"><i class="fas fa-lightbulb"></i></div><h3>Smart Lighting</h3><p>Customizable RGB LED & party modes</p></div><div class="service-flow-item"><div class="service-flow-icon"><i class="fas fa-utensils"></i></div><h3>VIP Catering</h3><p>Gourmet snacks & party platters</p></div><div class="service-flow-item"><div class="service-flow-icon"><i class="fas fa-headset"></i></div><h3>Event Hosts</h3><p>Professional MC & song assistance</p></div></div></div></section>
 
-<section class="section"><div class="container"><div class="section-header"><span class="section-badge">Special Events</span><h2 class="section-title">Upcoming Parties</h2></div><div class="workshop-alternate"><div class="workshop-row"><div><img class="workshop-img" src="images/h1.avif" alt="Karaoke night"></div><div><div class="workshop-date-badge">Every Friday • $25 entry</div><h3>Neon Fridays</h3><p>Open mic karaoke battles with prizes & glow cocktails.</p></div></div><div class="workshop-row workshop-row-reverse"><div><img class="workshop-img" src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=600" alt="Private event"></div><div><div class="workshop-date-badge">May 20 • From $400</div><h3>Birthday Takeover</h3><p>Exclusive room + decorations + custom playlist.</p></div></div></div></div></section>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Special Events</span>
+                    <h2 class="section-title">Upcoming Parties</h2>
+                </div>
+                <div class="workshop-alternate">
+                    <div class="workshop-row">
+                        <div>
+                            <img class="workshop-img" src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=1000&q=80" alt="Karaoke night">
+                        </div>
+                        <div>
+                            <div class="workshop-date-badge">Every Friday • $25 entry</div>
+                            <h3>Neon Fridays</h3>
+                            <p>Open mic karaoke battles with prizes & glow cocktails.</p>
+                        </div>
+                    </div>
+                    <div class="workshop-row workshop-row-reverse">
+                        <div>
+                            <img class="workshop-img" src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=1000&q=80" alt="Private event">
+                        </div>
+                        <div>
+                            <div class="workshop-date-badge">May 20 • From $400</div>
+                            <h3>Birthday Takeover</h3>
+                            <p>Exclusive room + decorations + custom playlist.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<section class="section section-alt"><div class="container"><div class="section-header"><span class="section-badge">Stories</span><h2 class="section-title">Epic Nights</h2></div><div class="featured-story"><div><img class="story-featured-img" src="images/h2.avif" alt="Party"></div><div><div class="story-meta">Apr 12, 2026</div><h3 style="font-size:1.8rem;">"Best bachelorette ever!"</h3><p>Our VIP suite transformed into a pop fantasy. See how we elevated the night with confetti cannons and personalized songs.</p><a href="#" class="btn-primary" style="display:inline-block; margin-top:1rem;">Read story <i class="fas fa-arrow-right"></i></a><div class="story-grid-mini"><div class="story-mini-item"><img class="story-mini-img" src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=150" alt=""><div><strong>Corporate event</strong><p style="font-size:0.8rem;">Team bonding night</p></div></div><div class="story-mini-item"><img class="story-mini-img" src="images/i1.webp" alt=""><div><strong>Family karaoke</strong><p style="font-size:0.8rem;">All ages fun</p></div></div></div></div></div></div></section>
+        <section class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Stories</span>
+                    <h2 class="section-title">Epic Nights</h2>
+                </div>
+                <div class="featured-story">
+                    <div>
+                        <img class="story-featured-img" src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1000&q=80" alt="Party">
+                    </div>
+                    <div>
+                        <div class="story-meta">Apr 12, 2026</div>
+                        <h3 style="font-size:1.8rem;">"Best bachelorette ever!"</h3>
+                        <p>Our VIP suite transformed into a pop fantasy. See how we elevated the night with confetti cannons and personalized songs.</p>
+                        <a href="#" class="btn-primary" style="display:inline-block; margin-top:1rem;">Read story <i class="fas fa-arrow-right"></i></a>
+                        
+                        <div class="story-grid-mini">
+                            <div class="story-mini-item">
+                                <img class="story-mini-img" src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?w=300&q=80" alt="">
+                                <div>
+                                    <strong>Corporate event</strong>
+                                    <p style="font-size:0.8rem;">Team bonding night</p>
+                                </div>
+                            </div>
+                            <div class="story-mini-item">
+                                <img class="story-mini-img" src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=300&q=80" alt="">
+                                <div>
+                                    <strong>Family karaoke</strong>
+                                    <p style="font-size:0.8rem;">All ages fun</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 <section class="section"><div class="container"><div class="community-cta"><span class="section-badge" style="color:var(--neon-purple);">VIP Access</span><h2>Join the Echo Club</h2><p style="max-width:500px; margin:1rem auto;">Get free hours, birthday perks, and priority booking.</p><div class="benefit-row"><span class="benefit-badge"><i class="fas fa-gift"></i> Birthday room upgrade</span><span class="benefit-badge"><i class="fas fa-percent"></i> 15% off drinks</span><span class="benefit-badge"><i class="fas fa-microphone"></i> Early song requests</span></div><div class="cta-email"><input type="email" placeholder="Your email address"><button>Subscribe →</button></div></div></div></section>
+
+    <!-- Global Pre-Footer CTA -->
+    <section class="section" style="padding-bottom: 6rem;">
+        <div class="container">
+            <div style="background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(11,14,12,0.9) 100%), url('https://images.unsplash.com/photo-1545128485-c400e7702796?w=2000&q=80') center/cover; border-radius: 2rem; padding: 6rem 2rem; text-align: center; border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+                <h2 style="font-size: 2.8rem; margin-bottom: 1rem; color: #fff;">Ready to own the stage?</h2>
+                <p style="font-size: 1.2rem; color: #ccc; max-width: 600px; margin: 0 auto 2.5rem;">Book your private VIP room today and experience the ultimate luxury nightlife.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="room.html" class="btn-primary" style="display: inline-block; padding: 0.8rem 2.5rem; background: var(--neon-purple); color: #0B0E0C; border-radius: 9999px; text-decoration: none; font-weight: 700;"><i class="fas fa-calendar-check" style="margin-right: 0.5rem;"></i> Book a Room</a>
+                    <a href="package.html" class="btn-outline-neon" style="display: inline-block; padding: 0.8rem 2.5rem; border: 1px solid var(--neon-purple); color: var(--neon-purple); border-radius: 9999px; text-decoration: none; font-weight: 700;">View Packages</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <footer class="footer">
     <div class="container">

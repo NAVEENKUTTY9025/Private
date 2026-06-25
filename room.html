@@ -8,8 +8,8 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A855F7'%3E%3Cpath d='M12 3v1m0 16v1M9 6l-1 1m8 8l1-1M6 9H5m14 0h-1m-8 8l1 1m6-8l1-1M6 15H5m14 0h-1M4 4l2 2m12-2l-2 2m2 12l-2-2M6 18l2-2' stroke='%23A855F7' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23A855F7'/%3E%3C/svg%3E">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts: Poppins + Montserrat -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:opsz,wght@14..32,300..900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Playfair Display + Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,58 +17,63 @@
             box-sizing: border-box;
         }
 
-        /* COLOR THEME: Black #0A0A0A, White #FFFFFF, Neon Purple #A855F7 - NO GLOW */
+        /* COLOR THEME: Emerald Green / Burgundy, Gold, Warm White */
         :root {
-            --bg-black: #0A0A0A;
-            --text-white: #FFFFFF;
-            --neon-purple: #A855F7;
-            --border-dim: rgba(255, 255, 255, 0.12);
-            --card-bg: #111111;
-            --heading-font: 'Montserrat', sans-serif;
-            --navbar-bg: #0A0A0A;
-            --bg-primary: #0A0A0A;
-            --bg-secondary: #111111;
-            --text-main: #FFFFFF;
-            --text-heading: #FFFFFF;
-            --footer-text: #B0B0B0;
+            --bg-black: #0B0E0C;
+            --text-white: #F8F5E6;
+            --neon-purple: #D4AF37;
+            --border-dim: transparent;
+            --card-bg: #111512;
+            --heading-font: 'Playfair Display', serif;
+            --navbar-bg: #0B0E0C;
+            --bg-primary: #0B0E0C;
+            --bg-secondary: #111512;
+            --text-main: #E0DEC8;
+            --text-heading: #F8F5E6;
+            --footer-text: #A9A48C;
         }
 
         /* LIGHT MODE */
         [data-theme="light"] {
             --bg-black: #FFFFFF;
-            --text-white: #111111;
-            --neon-purple: #9333EA;
+            --text-white: #0B0E0C;
+            --neon-purple: #C5A028;
             --border-dim: rgba(0, 0, 0, 0.1);
-            --card-bg: #F5F5F5;
+            --card-bg: #FDFCF6;
             --navbar-bg: #FFFFFF;
             --bg-primary: #FFFFFF;
-            --bg-secondary: #F8F9FA;
-            --text-main: #212529;
-            --text-heading: #000000;
-            --footer-text: #6C757D;
+            --bg-secondary: #FDFCF6;
+            --text-main: #333333;
+            --text-heading: #111111;
+            --footer-text: #666666;
         }
 
         html, body { overflow-x: hidden; width: 100%; }
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-main);
             transition: background-color 0.3s, color 0.3s;
-            line-height: 1.5;
+            line-height: 1.7;
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--heading-font);
             color: var(--text-heading);
-            font-weight: 700;
+            font-weight: 600;
             line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-weight: 500;
         }
 
         .container {
             width: 100%;
-            max-width: 1280px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
 
         /* RTL Support */
@@ -89,13 +94,18 @@
         /* ===== NAVBAR (same as main) ===== */
         .navbar-container {
             background-color: var(--navbar-bg);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--neon-purple);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
             position: fixed;
-            top: 0;
-            width: 100%;
+            top: 1rem;
+            width: 95%;
+            max-width: 1400px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2rem;
             z-index: 1000;
-            padding: 0.7rem 0;
+            padding: 0.7rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
         .navbar-flex {
             display: flex;
@@ -127,7 +137,7 @@
             flex-direction: column;
             line-height: 1.2;
         }
-        .logo-text {
+        .logo-text { white-space: nowrap;
             font-size: 1.45rem;
             font-weight: 800;
             color: var(--text-heading);
@@ -159,9 +169,9 @@
         .navbar-right-desktop { display: flex; align-items: center; gap: 0.6rem; }
         .icon-btn { width: 2.4rem; height: 2.4rem; background-color: rgba(168,85,247,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-heading); border: 1px solid var(--neon-purple); cursor: poPoppins; transition: 0.2s; }
         .icon-btn:hover { background-color: var(--neon-purple); color: #0A0A0A; transform: scale(1.05); }
-        .login-btn { background-color: transparent; color: var(--text-main); border: 1px solid var(--neon-purple); padding: 0.5rem 1.2rem; border-radius: 40px; font-weight: 600; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; transition: 0.2s; }
-        [data-theme="light"] .login-btn { color: var(--text-main); }
-        .login-btn:hover { background-color: var(--neon-purple); transform: translateY(-2px); color: #0A0A0A; }
+        .login-btn { background-color: var(--neon-purple); color: #0A0A0A; border: 1px solid var(--neon-purple); padding: 0.5rem 1.2rem; border-radius: 40px; font-weight: 600; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; transition: 0.2s; }
+        [data-theme="light"] .login-btn { color: #FFFFFF; }
+        .login-btn:hover { background-color: transparent; transform: translateY(-2px); color: var(--text-main); }
 
         .mobile-menu-btn { display: none; color: var(--text-heading); font-size: 1.5rem; background: transparent; border: none; cursor: poPoppins; }
         @media (min-width: 1200px) { 
@@ -218,15 +228,16 @@
         }
         .room-card {
             background: var(--card-bg);
-            border-radius: 2rem;
+            border-radius: 1.5rem;
             overflow: hidden;
-            border: 1px solid var(--border-dim);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
-        .room-card:hover { transform: translateY(-8px); border-color: var(--neon-purple); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.3); }
-        .room-img { width: 100%; height: 240px; object-fit: cover; border-bottom: 1px solid var(--neon-purple); }
+        .room-card:hover { transform: translateY(-8px); border-color: rgba(255, 255, 255, 0.1); box-shadow: 0 20px 30px -12px rgba(168,85,247,0.3); }
+        .room-img { width: 100%; height: 350px; object-fit: cover; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .room-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
         .room-title { font-size: 1.6rem; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 0.5rem; }
         .room-price { color: var(--neon-purple); font-weight: 700; font-size: 1.1rem; }
@@ -237,7 +248,7 @@
         .room-btn:hover { background: var(--neon-purple); color: #0A0A0A; transform: scale(1.02); }
         [data-theme="light"] .room-btn:hover { color: #FFFFFF; }
 
-        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
         .section-badge { color: var(--neon-purple); letter-spacing: 2px; text-transform: uppercase; font-weight: 700; font-size: 0.8rem; display: block; margin-bottom: 0.5rem; }
         .section-title { font-size: 2.5rem; margin-bottom: 1rem; }
         
@@ -314,7 +325,7 @@
     <div class="rooms-grid">
         <div class="room-card"><img class="room-img" src="https://images.unsplash.com/photo-1575444758702-4a6b9222336e?w=600" alt="Neon Suite"><div class="room-content"><div class="room-title"><span>Neon Mirage</span><span class="room-price">$89/hr</span></div><div class="room-features"><span class="feature-badge"><i class="fas fa-users"></i> 6-10 ppl</span><span class="feature-badge"><i class="fas fa-tv"></i> 4K screens</span></div><p class="room-desc">Futuristic neon strips, fog-ready stage, and a massive song library. Ideal for influencers & small groups.</p><a href="#" class="room-btn">Book Now <i class="fas fa-arrow-right"></i></a></div></div>
         <div class="room-card"><img class="room-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600" alt="Retro 80s"><div class="room-content"><div class="room-title"><span>Retro Rewind</span><span class="room-price">$69/hr</span></div><div class="room-features"><span class="feature-badge"><i class="fas fa-users"></i> 4-8 ppl</span><span class="feature-badge"><i class="fas fa-record-vinyl"></i> Vinyl decor</span></div><p class="room-desc">Step back in time with disco balls, vintage mics, and classic 80s playlist wall.</p><a href="#" class="room-btn">Book Now <i class="fas fa-arrow-right"></i></a></div></div>
-        <div class="room-card"><img class="room-img" src="images/h4.avif" alt="VIP Luxe"><div class="room-content"><div class="room-title"><span>Presidential Suite</span><span class="room-price">$299/hr</span></div><div class="room-features"><span class="feature-badge"><i class="fas fa-crown"></i> Up to 20</span><span class="feature-badge"><i class="fas fa-champagne-glasses"></i> Bottle service</span></div><p class="room-desc">Leather sofas, private bar, dedicated host, and premium acoustics. Ultimate luxury.</p><a href="#" class="room-btn">Book Now <i class="fas fa-arrow-right"></i></a></div></div>
+        <div class="room-card"><img class="room-img" src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?w=600&q=80" alt="VIP Luxe"><div class="room-content"><div class="room-title"><span>Presidential Suite</span><span class="room-price">$299/hr</span></div><div class="room-features"><span class="feature-badge"><i class="fas fa-crown"></i> Up to 20</span><span class="feature-badge"><i class="fas fa-champagne-glasses"></i> Bottle service</span></div><p class="room-desc">Leather sofas, private bar, dedicated host, and premium acoustics. Ultimate luxury.</p><a href="#" class="room-btn">Book Now <i class="fas fa-arrow-right"></i></a></div></div>
         <div class="room-card"><img class="room-img" src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=600" alt="K-pop room"><div class="room-content"><div class="room-title"><span>K-pop Arena</span><span class="room-price">$99/hr</span></div><div class="room-features"><span class="feature-badge"><i class="fas fa-microphone"></i> Dance cam</span><span class="feature-badge"><i class="fas fa-music"></i> Korean tracks</span></div><p class="room-desc">LED dance floor, motion lights, and the largest K-pop collection in town.</p><a href="#" class="room-btn">Book Now <i class="fas fa-arrow-right"></i></a></div></div>
         <div class="room-card"><img class="room-img" src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600" alt="Intimate Duet"><div class="room-content"><div class="room-title"><span>Duet Lounge</span><span class="room-price">$49/hr</span></div><div class="room-features"><span class="feature-badge"><i class="fas fa-heart"></i> 2-4 ppl</span><span class="feature-badge"><i class="fas fa-couch"></i> Cozy booth</span></div><p class="room-desc">Perfect for date nights or close friends. Romantic lighting & curated love songs.</p><a href="#" class="room-btn">Book Now <i class="fas fa-arrow-right"></i></a></div></div>
         <div class="room-card"><img class="room-img" src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600" alt="Party XL"><div class="room-content"><div class="room-title"><span>Megawatt Hall</span><span class="room-price">$199/hr</span></div><div class="room-features"><span class="feature-badge"><i class="fas fa-birthday-cake"></i> 25+ guests</span><span class="feature-badge"><i class="fas fa-dj"></i> DJ booth</span></div><p class="room-desc">Massive space with 2 stages, confetti cannon, and surround sound for big celebrations.</p><a href="#" class="room-btn">Book Now <i class="fas fa-arrow-right"></i></a></div></div>
@@ -360,11 +371,43 @@
     <!-- SECTION 6: Package add-ons for rooms (bundles) -->
     <div class="section-header"><span class="section-badge">Upgrade Your Night</span><h2 class="section-title">Room Add-ons & Packages</h2></div>
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; margin-bottom: 4rem;">
-        <div style="background:var(--card-bg); border-radius: 1.5rem; padding:1.5rem; border:1px solid var(--border-dim);"><i class="fas fa-champagne-glasses" style="font-size:2rem; color:var(--neon-purple);"></i><h3>Sparkle Package</h3><p>1 bottle of prosecco + fruit platter + 2 extra hours <strong>$120</strong></p><button class="room-btn" style="margin-top:0.8rem;">Add to booking</button></div>
-        <div style="background:var(--card-bg); border-radius: 1.5rem; padding:1.5rem; border:1px solid var(--border-dim);"><i class="fas fa-cake-candles" style="font-size:2rem; color:var(--neon-purple);"></i><h3>Birthday Bash</h3><p>Dessert cake, balloon decoration, confetti & song dedication <strong>$99</strong></p><button class="room-btn" style="margin-top:0.8rem;">Add to booking</button></div>
-        <div style="background:var(--card-bg); border-radius: 1.5rem; padding:1.5rem; border:1px solid var(--border-dim);"><i class="fas fa-drumstick-bite" style="font-size:2rem; color:var(--neon-purple);"></i><h3>Grazing Table</h3><p>Gourmet finger foods, cheese board, sliders, and dips <strong>$159</strong></p><button class="room-btn" style="margin-top:0.8rem;">Add to booking</button></div>
+        <div style="background:var(--card-bg); border-radius: 1.5rem; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column; gap: 1rem; height: 100%;">
+            <i class="fas fa-champagne-glasses" style="font-size: 2.5rem; color: var(--neon-purple); margin-bottom: 0.5rem;"></i>
+            <h3 style="font-size: 1.3rem; margin: 0;">Sparkle Package</h3>
+            <p style="color: var(--footer-text); margin: 0; line-height: 1.6; flex-grow: 1;">1 bottle of prosecco + fruit platter + 2 extra hours</p>
+            <div style="font-size: 1.5rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">$120</div>
+            <button class="room-btn" style="width: 100%; justify-content: center;">Add to booking</button>
+        </div>
+        <div style="background:var(--card-bg); border-radius: 1.5rem; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column; gap: 1rem; height: 100%;">
+            <i class="fas fa-cake-candles" style="font-size: 2.5rem; color: var(--neon-purple); margin-bottom: 0.5rem;"></i>
+            <h3 style="font-size: 1.3rem; margin: 0;">Birthday Bash</h3>
+            <p style="color: var(--footer-text); margin: 0; line-height: 1.6; flex-grow: 1;">Dessert cake, balloon decoration, confetti & song dedication</p>
+            <div style="font-size: 1.5rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">$99</div>
+            <button class="room-btn" style="width: 100%; justify-content: center;">Add to booking</button>
+        </div>
+        <div style="background:var(--card-bg); border-radius: 1.5rem; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.4); display: flex; flex-direction: column; gap: 1rem; height: 100%;">
+            <i class="fas fa-drumstick-bite" style="font-size: 2.5rem; color: var(--neon-purple); margin-bottom: 0.5rem;"></i>
+            <h3 style="font-size: 1.3rem; margin: 0;">Grazing Table</h3>
+            <p style="color: var(--footer-text); margin: 0; line-height: 1.6; flex-grow: 1;">Gourmet finger foods, cheese board, sliders, and dips</p>
+            <div style="font-size: 1.5rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">$159</div>
+            <button class="room-btn" style="width: 100%; justify-content: center;">Add to booking</button>
+        </div>
     </div>
 </div>
+
+    <!-- Global Pre-Footer CTA -->
+    <section class="section" style="padding-bottom: 6rem;">
+        <div class="container">
+            <div style="background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(11,14,12,0.9) 100%), url('https://images.unsplash.com/photo-1545128485-c400e7702796?w=2000&q=80') center/cover; border-radius: 2rem; padding: 6rem 2rem; text-align: center; border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.4);">
+                <h2 style="font-size: 2.8rem; margin-bottom: 1rem; color: #fff;">Ready to own the stage?</h2>
+                <p style="font-size: 1.2rem; color: #ccc; max-width: 600px; margin: 0 auto 2.5rem;">Book your private VIP room today and experience the ultimate luxury nightlife.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="room.html" class="btn-primary" style="display: inline-block; padding: 0.8rem 2.5rem; background: var(--neon-purple); color: #0B0E0C; border-radius: 9999px; text-decoration: none; font-weight: 700;"><i class="fas fa-calendar-check" style="margin-right: 0.5rem;"></i> Book a Room</a>
+                    <a href="package.html" class="btn-outline-neon" style="display: inline-block; padding: 0.8rem 2.5rem; border: 1px solid var(--neon-purple); color: var(--neon-purple); border-radius: 9999px; text-decoration: none; font-weight: 700;">View Packages</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <footer class="footer">
     <div class="container"><div class="footer-main"><div class="footer-brand"><a href="#" class="logo" style="display:flex; gap:10px;"><div class="logo-icon"><i class="fas fa-microphone-alt"></i></div><div class="logo-text-wrapper"><div class="logo-text">ECHO<span> Karaoke</span></div><span class="logo-tagline">sing loud • party private</span></div></a><p class="footer-tagline">Open 7 days • 6pm–2am. Premium private karaoke lounge in the heart of the city.</p><div class="footer-social"><a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a><a href="#" class="footer-social-link"><i class="fab fa-tiktok"></i></a><a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a></div></div><div><h3 class="footer-heading">Quick Links</h3><ul class="footer-links"><li><a href="#"><i class="fas fa-chevron-right"></i> Rooms & rates</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Events</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Gift cards</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Gallery</a></li></ul></div><div><h3 class="footer-heading">Support</h3><ul class="footer-links"><li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Safety</a></li><li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li></ul></div><div class="footer-newsletter"><h3 class="footer-heading">Stay Connected</h3><p>Subscribe for exclusive offers & VIP invites.</p><form class="newsletter-form"><input type="email" placeholder="Your email address" class="footer-input"><button class="footer-btn"><i class="fas fa-paper-plane"></i> Subscribe</button></form></div></div><div class="footer-bottom"><div class="copyright">© 2026 Echo Karaoke Lounge – premium private party rooms. All rights reserved.</div><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></div></div></div>

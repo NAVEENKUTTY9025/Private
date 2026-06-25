@@ -8,8 +8,8 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A855F7'%3E%3Cpath d='M12 3v1m0 16v1M9 6l-1 1m8 8l1-1M6 9H5m14 0h-1m-8 8l1 1m6-8l1-1M6 15H5m14 0h-1M4 4l2 2m12-2l-2 2m2 12l-2-2M6 18l2-2' stroke='%23A855F7' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23A855F7'/%3E%3C/svg%3E">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts: Poppins + Montserrat -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:opsz,wght@14..32,300..900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Playfair Display + Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -18,56 +18,61 @@
         }
 
         :root {
-            --bg-black: #0A0A0A;
-            --text-white: #FFFFFF;
-            --neon-purple: #A855F7;
-            --border-dim: rgba(255, 255, 255, 0.12);
-            --card-bg: #111111;
-            --heading-font: 'Montserrat', sans-serif;
-            --navbar-bg: #0A0A0A;
-            --bg-primary: #0A0A0A;
-            --bg-secondary: #111111;
-            --text-main: #FFFFFF;
-            --text-heading: #FFFFFF;
-            --footer-text: #B0B0B0;
+            --bg-black: #0B0E0C;
+            --text-white: #F8F5E6;
+            --neon-purple: #D4AF37;
+            --border-dim: transparent;
+            --card-bg: #111512;
+            --heading-font: 'Playfair Display', serif;
+            --navbar-bg: #0B0E0C;
+            --bg-primary: #0B0E0C;
+            --bg-secondary: #111512;
+            --text-main: #E0DEC8;
+            --text-heading: #F8F5E6;
+            --footer-text: #A9A48C;
         }
 
         [data-theme="light"] {
             --bg-black: #FFFFFF;
-            --text-white: #111111;
-            --neon-purple: #9333EA;
+            --text-white: #0B0E0C;
+            --neon-purple: #C5A028;
             --border-dim: rgba(0, 0, 0, 0.1);
-            --card-bg: #F5F5F5;
+            --card-bg: #FDFCF6;
             --navbar-bg: #FFFFFF;
             --bg-primary: #FFFFFF;
-            --bg-secondary: #F8F9FA;
-            --text-main: #212529;
-            --text-heading: #000000;
-            --footer-text: #6C757D;
+            --bg-secondary: #FDFCF6;
+            --text-main: #333333;
+            --text-heading: #111111;
+            --footer-text: #666666;
         }
 
         html, body { overflow-x: hidden; width: 100%; }
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-main);
             transition: background-color 0.3s, color 0.3s;
-            line-height: 1.5;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--heading-font);
             color: var(--text-heading);
-            font-weight: 700;
+            font-weight: 600;
             line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-weight: 500;
         }
 
         .container {
             width: 100%;
-            max-width: 1280px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
 
         [dir="rtl"] {
@@ -89,13 +94,18 @@
         /* ===== NAVBAR ===== */
         .navbar-container {
             background-color: var(--navbar-bg);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--neon-purple);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
             position: fixed;
-            top: 0;
-            width: 100%;
+            top: 1rem;
+            width: 95%;
+            max-width: 1400px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2rem;
             z-index: 1000;
-            padding: 0.7rem 0;
+            padding: 0.7rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
         .navbar-flex {
             display: flex;
@@ -127,7 +137,7 @@
             flex-direction: column;
             line-height: 1.2;
         }
-        .logo-text {
+        .logo-text { white-space: nowrap;
             font-size: 1.45rem;
             font-weight: 800;
             color: var(--text-heading);
@@ -230,8 +240,8 @@
             transform: scale(1.05); 
         }
         .login-btn {
-            background-color: transparent; 
-            color: var(--text-main); 
+            background-color: var(--neon-purple); 
+            color: #0A0A0A; 
             border: 1px solid var(--neon-purple);
             padding: 0.5rem 1.2rem;
             border-radius: 40px; 
@@ -244,9 +254,9 @@
             transition: 0.2s;
         }
         .login-btn:hover { 
-            background-color: var(--neon-purple); 
+            background-color: transparent; 
             transform: translateY(-2px); 
-            color: #0A0A0A; 
+            color: var(--text-main); 
         }
         .mobile-menu-btn { 
             display: none; 
@@ -360,14 +370,13 @@
             background: linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 100%), url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
             margin-top: 70px;
         }
-        .hero-content { text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 0; }
-        .hero-sub { color: var(--neon-purple); letter-spacing: 2px; margin-bottom: 1rem; font-weight: 600; }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; }
-
-        /* SECTION */
-        .section { padding: 5rem 0; }
+        .hero-content { text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 0; position: relative; z-index: 2; }
+        .hero-sub { color: var(--neon-purple); letter-spacing: 2px; margin-bottom: 1rem; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; text-shadow: 0 2px 8px rgba(0,0,0,0.8); color: #FFFFFF; }
+        .hero p { font-size: 1.1rem; color: #FFFFFF; text-shadow: 0 2px 8px rgba(0,0,0,0.8); font-weight: 500; }
+        .section { padding: 6rem 0; }
         .section-alt { background-color: var(--bg-secondary); }
-        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
         .section-badge { color: var(--neon-purple); letter-spacing: 2px; text-transform: uppercase; font-weight: 700; font-size: 0.8rem; display: block; margin-bottom: 0.5rem; }
         .section-title { font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-heading); }
 
@@ -400,6 +409,16 @@
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1.5rem;
         }
+        #candid-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        #candid-grid .gallery-item {
+            flex: 1 1 320px;
+            max-width: 450px;
+            width: 100%;
+        }
         .gallery-item {
             position: relative;
             overflow: hidden;
@@ -407,7 +426,8 @@
             cursor: poPoppins;
             transition: transform 0.3s, box-shadow 0.3s;
             background: var(--card-bg);
-            border: 1px solid var(--border-dim);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
         .gallery-item:hover {
             transform: translateY(-5px);
@@ -415,7 +435,7 @@
         }
         .gallery-item img {
             width: 100%;
-            height: 280px;
+            height: 350px;
             object-fit: cover;
             transition: transform 0.5s;
             display: block;
@@ -462,7 +482,7 @@
         }
         .video-card video {
             width: 100%;
-            height: 220px;
+            height: 350px;
             object-fit: cover;
         }
         .video-info { padding: 1rem; text-align: center; }
@@ -598,7 +618,9 @@
 <section class="section"><div class="container"><div class="section-header"><span class="section-badge">Guest Love</span><h2 class="section-title">They Shared Their Moments</h2></div><div class="gallery-grid" id="testimonial-grid"></div></div></section>
 
 <!-- Section 6: Book a Photoshoot CTA -->
-<section class="section section-alt"><div class="container"><div style="background: linear-gradient(135deg, var(--neon-purple) 0%, #6b21a5 100%); border-radius: 2rem; padding: 3rem; text-align: center; color: white;"><h2 style="color: white; font-size: 2rem;"><i class="fas fa-camera-retro"></i> Capture Your Night</h2><p style="margin: 1rem 0;">Book our professional photography package and get digital memories delivered instantly.</p><a href="#" class="btn-primary" style="background: white; color: #0A0A0A;">Book a Photographer →</a></div></div></section>
+
+    <!-- Global Pre-Footer CTA -->
+   
 
 <footer class="footer"><div class="container"><div class="footer-main"><div class="footer-brand"><a href="#" class="logo" style="display:flex; gap:10px;"><div class="logo-icon"><i class="fas fa-microphone-alt"></i></div><div class="logo-text-wrapper"><div class="logo-text">ECHO<span> Karaoke</span></div><span class="logo-tagline">sing loud • party private</span></div></a><p class="footer-tagline">Open 7 days • 6pm–2am. Premium private karaoke lounge in the heart of the city.</p><div class="footer-social"><a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a><a href="#" class="footer-social-link"><i class="fab fa-tiktok"></i></a><a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a></div></div><div><h3 class="footer-heading">Quick Links</h3><ul class="footer-links"><li><a href="#">Rooms & rates</a></li><li><a href="#">Events</a></li><li><a href="#">Gift cards</a></li><li><a href="#">Gallery</a></li></ul></div><div><h3 class="footer-heading">Support</h3><ul class="footer-links"><li><a href="#">FAQ</a></li><li><a href="#">Contact</a></li><li><a href="#">Safety</a></li><li><a href="#">Careers</a></li></ul></div><div><h3 class="footer-heading">Stay Connected</h3><p>Subscribe for exclusive offers.</p><input type="email" placeholder="Your email address" class="footer-input"><button class="footer-btn"><i class="fas fa-paper-plane"></i> Subscribe</button></div></div><div class="footer-bottom"><div class="copyright">© 2026 Echo Karaoke Lounge – premium gallery & visual stories.</div><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></div></div></div></footer>
 <div id="lightbox" class="lightbox"><span class="lightbox-close">&times;</span><img id="lightbox-img" src="" alt=""></div>
@@ -627,7 +649,7 @@
     ];
     
     const testimonialPhotos = [
-        { img: "https://images.unsplash.com/photo-1531747118685-fa6ae4a2b340?w=800&auto=format", title: "Sarah's 25th", desc: "Best night ever!" },
+        { img: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&auto=format", title: "Sarah's 25th", desc: "Best night ever!" },
         { img: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800&auto=format", title: "James & Team", desc: "Epic corporate party" },
         { img: "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=800&auto=format", title: "Bachelorette", desc: "VIP treatment" }
     ];

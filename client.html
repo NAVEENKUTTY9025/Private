@@ -7,7 +7,7 @@
     <title>Echo Karaoke | Client Dashboard</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23A855F7'%3E%3Cpath d='M12 3v1m0 16v1M9 6l-1 1m8 8l1-1M6 9H5m14 0h-1m-8 8l1 1m6-8l1-1M6 15H5m14 0h-1M4 4l2 2m12-2l-2 2m2 12l-2-2M6 18l2-2' stroke='%23A855F7' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='12' cy='12' r='3' fill='%23A855F7'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:opsz,wght@14..32,300..900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,50 +15,50 @@
             box-sizing: border-box;
         }
 
-        /* Echo Karaoke Theme - Purple/Black/White */
+        /* Echo Karaoke Theme - VIP Gold & Velvet */
         :root, html[data-theme='dark'] {
-            --bg-primary: #0A0A0A;
-            --bg-secondary: #111111;
-            --bg-card: #111111;
-            --neon-purple: #A855F7;
-            --neon-purple-dark: #7E22CE;
-            --neon-purple-light: #C084FC;
-            --text-primary: #FFFFFF;
-            --text-secondary: #B0B0B0;
-            --text-muted: #6B7280;
-            --border-dim: rgba(255, 255, 255, 0.08);
-            --border-light: rgba(255, 255, 255, 0.12);
-            --hover-bg: rgba(168, 85, 247, 0.1);
-            --sidebar-bg: #0F0F0F;
-            --header-bg: #0A0A0A;
-            --stat-card-bg: #111111;
+            --bg-primary: #0B0E0C;
+            --bg-secondary: #111512;
+            --bg-card: #111512;
+            --neon-purple: #D4AF37;
+            --neon-purple-dark: #B5932C;
+            --neon-purple-light: #F3E5AB;
+            --text-primary: #F8F5E6;
+            --text-secondary: #E0DEC8;
+            --text-muted: #A9A48C;
+            --border-dim: transparent;
+            --border-light: transparent;
+            --hover-bg: rgba(212, 175, 55, 0.1);
+            --sidebar-bg: #0B0E0C;
+            --header-bg: #0B0E0C;
+            --stat-card-bg: #111512;
             --success: #10B981;
             --warning: #F59E0B;
             --danger: #EF4444;
             --info: #3B82F6;
-            --loyalty-gold: #FFD700;
+            --loyalty-gold: #D4AF37;
         }
 
         html[data-theme='light'] {
             --bg-primary: #FFFFFF;
-            --bg-secondary: #F8F9FA;
+            --bg-secondary: #FDFCF6;
             --bg-card: #FFFFFF;
-            --neon-purple: #9333EA;
-            --neon-purple-dark: #7E22CE;
-            --neon-purple-light: #A855F7;
+            --neon-purple: #C5A028;
+            --neon-purple-dark: #A68621;
+            --neon-purple-light: #D4AF37;
             --text-primary: #111111;
-            --text-secondary: #4A4A4A;
-            --text-muted: #6C757D;
+            --text-secondary: #333333;
+            --text-muted: #666666;
             --border-dim: rgba(0, 0, 0, 0.06);
             --border-light: rgba(0, 0, 0, 0.1);
-            --hover-bg: rgba(147, 51, 234, 0.05);
-            --sidebar-bg: #F8F9FA;
+            --hover-bg: rgba(197, 160, 40, 0.05);
+            --sidebar-bg: #FDFCF6;
             --header-bg: #FFFFFF;
-            --stat-card-bg: #F8F9FA;
+            --stat-card-bg: #FDFCF6;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             transition: background-color 0.3s, color 0.3s;
@@ -448,6 +448,8 @@
             font-size: 0.7rem;
             color: var(--text-secondary);
         }
+        h1, h2, h3, h4, h5, h6 { font-weight: 600 !important; }
+        p { font-weight: 500 !important; }
     </style>
 </head>
 <body>
@@ -647,7 +649,7 @@
                     <h3>Sign out of your account?</h3>
                     <p style="color: var(--text-secondary); margin: 1rem 0;">You'll need to log in again to access your dashboard.</p>
                     <div style="display: flex; gap: 1rem; justify-content: center;">
-                        <button onclick="activateSection('dashboard')" style="background: var(--hover-bg); border: 1px solid var(--border-light); padding: 0.6rem 1.5rem; border-radius: 30px; cursor: poPoppins;">Cancel</button>
+                        <button onclick="activateSection('dashboard')" style="background: var(--hover-bg); border: 1px solid var(--border-light); padding: 0.6rem 1.5rem; border-radius: 30px; cursor: pointer; color: var(--text-main);">Cancel</button>
                         <button onclick="window.location.href='index.html'" style="background: #ef4444; color: white; border: none; padding: 0.6rem 1.5rem; border-radius: 30px; cursor: poPoppins;">Sign Out</button>
                     </div>
                 </div>
